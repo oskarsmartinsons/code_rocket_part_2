@@ -4,14 +4,14 @@ import com.meawallet.parkingapp.ui.MenuAction;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ExitAction implements MenuAction {
+public class SettingsAction implements MenuAction {
     @Override
     public String getName() {
-        return "Exit";
+        return "Settings";
     }
 
     @Override
     public void execute() {
-        System.exit(0);
+        System.out.println("Settings");
     }
 }

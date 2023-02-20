@@ -1,9 +1,10 @@
 package com.meawallet.parkingapp.ui;
 
 import lombok.AllArgsConstructor;
-import lombok.Value;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
+@Component
 @AllArgsConstructor
 public class UserMenu {
     UserInput userInput;
@@ -15,12 +16,18 @@ public class UserMenu {
             try {
                 printMenu();
                 Integer optionNr = userInput.requestMenuNumber();
-                startAction(optionNr);
+
+                if (menuActionList.get(optionNr).getName().equals("Settings")) {
+                    System.out.println("SubMenu");
+                } else {
+                    startAction(optionNr);
+                }
+            } catch (IndexOutOfBoundsException iob) {
+                System.out.println("Please enter correct menu number: " + iob.getMessage() +"\n");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
     }
 
     private void startAction(Integer optionNr) {

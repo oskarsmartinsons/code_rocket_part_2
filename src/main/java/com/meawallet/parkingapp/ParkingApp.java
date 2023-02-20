@@ -1,24 +1,12 @@
 package com.meawallet.parkingapp;
 
-import com.meawallet.parkingapp.ui.UserInput;
-import com.meawallet.parkingapp.ui.actions.CreateParkingLotAction;
-import com.meawallet.parkingapp.ui.MenuAction;
 import com.meawallet.parkingapp.ui.UserMenu;
-import com.meawallet.parkingapp.ui.actions.ExitAction;
-import lombok.AllArgsConstructor;
-import lombok.Value;
-
-import java.util.List;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class ParkingApp {
 	public static void main(String[] args) {
-		UserInput userInput = new UserInput();
-		List<MenuAction> menuActionList = List.of(
-				new CreateParkingLotAction(userInput),
-				new ExitAction()
-		);
-
-		UserMenu userMenu = new UserMenu(userInput, menuActionList);
+		var annotation = new AnnotationConfigApplicationContext("com.meawallet.parkingapp");
+		var userMenu = annotation.getBean(UserMenu.class);
 		userMenu.startMenu();
 	}
 
