@@ -5,29 +5,31 @@ import com.meawallet.parkingapp.ui.MenuName;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ExitAction implements MenuActions {
+public class SetUpParkingLot implements MenuActions {
+
     @Override
     public boolean hasSubMenu() {
-        return false;
+        return true;
     }
 
     @Override
     public MenuName getSubMenuName() {
-        return null;
+        return MenuName.SUB;
     }
 
     @Override
     public MenuName getMenuAppearanceName() {
+       // return MenuType.SUB;
         return MenuName.MAIN;
     }
 
     @Override
     public String getName() {
-        return "Exit";
+        return "SET UP my Parking Lot";
     }
 
     @Override
     public void execute() {
-        System.exit(0);
+        System.out.println("Settings");
     }
 }

@@ -1,6 +1,6 @@
 package com.meawallet.parkingapp.ui;
 
-public interface MenuAction {
+public interface SubMenuActions {
     String getName();
 
     void execute();
