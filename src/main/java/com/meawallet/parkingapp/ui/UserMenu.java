@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 public class UserMenu {
     UserInput userInput;
     List<MenuActions> menuActionsList;
-    List<SubMenuActions> subMenuActionsList;
 
     public void startMenu() {
         while (true) {
@@ -35,19 +34,6 @@ public class UserMenu {
                     start(mainMenuList, optionNr);
                 }
 
-       /*         System.out.println("\nPARKING APP menu:");
-                printMenu(MenuType.MAIN);
-                Integer optionNr = userInput.requestMenuNumber();
-
-                if (menuActionsList.get(optionNr).getMenuType().equals(MenuType.SUB)) {
-                    System.out.println("\nSET UP my Parking Lot menu:");
-                    printMenu(MenuType.SUB);
-                    optionNr = userInput.requestMenuNumber();
-                    startAction(optionNr,MenuType.SUB);
-                } else {
-                    startAction(optionNr, MenuType.MAIN);
-                }*/
-
             } catch (IndexOutOfBoundsException iob) {
                 System.out.println("Please enter correct menu number: " + iob.getMessage() +"\n");
             } catch (CreateParkingLotRequestException createEx) {
@@ -62,6 +48,7 @@ public class UserMenu {
     private List<MenuActions> getMenuByName(MenuName menuName) {
         return menuActionsList.stream().filter(m->m.getMenuAppearanceName().equals(menuName)).toList();
     }
+
     private void print(List<MenuActions> menuActionList) {
         for (int i = 0; i < menuActionList.size(); i++) {
             System.out.println(i + ". " + menuActionList.get(i).getName());
@@ -71,24 +58,4 @@ public class UserMenu {
     private void start(List<MenuActions> actionsList, Integer optionNr) {
         actionsList.get(optionNr).execute();
     }
-
- /*   private void startAction(Integer optionNr, MenuType type) {
-        if (type.equals(MenuType.MAIN)) {
-            menuActionsList.get(optionNr).execute();
-        } else {
-            subMenuActionsList.get(optionNr).execute();
-        }
-    }*/
-
-/*    private void printMenu(MenuType type) {
-        if (type.equals(MenuType.MAIN)) {
-            for (int i = 0; i < menuActionsList.size(); i++) {
-                System.out.println(i + ". " + menuActionsList.get(i).getName());
-            }
-        } else {
-            for (int i = 0; i < subMenuActionsList.size(); i++) {
-                System.out.println(i + ". " + subMenuActionsList.get(i).getName());
-            }
-        }
-    }*/
 }

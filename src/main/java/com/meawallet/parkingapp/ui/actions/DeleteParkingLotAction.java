@@ -1,11 +1,16 @@
 package com.meawallet.parkingapp.ui.actions;
 
+import com.meawallet.parkingapp.core.ParkingLotService;
 import com.meawallet.parkingapp.ui.MenuActions;
 import com.meawallet.parkingapp.ui.MenuName;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ReturnSubAction implements MenuActions {
+@AllArgsConstructor
+public class DeleteParkingLotAction implements MenuActions {
+    private final ParkingLotService parkingLotService;
+
     @Override
     public boolean hasSubMenu() {
         return false;
@@ -18,16 +23,18 @@ public class ReturnSubAction implements MenuActions {
 
     @Override
     public MenuName getMenuAppearanceName() {
-        return MenuName.SUB;
+        return MenuName.MAIN;
     }
 
     @Override
     public String getName() {
-        return "Return";
+        return "Delete Parking Lot";
     }
 
     @Override
     public void execute() {
-
+        var parkingLot = parkingLotService.findParkingLotById(1);
+        parkingLotService.deleteParkingLot(parkingLot);
+        System.out.println("Deleted: " + parkingLot);
     }
 }

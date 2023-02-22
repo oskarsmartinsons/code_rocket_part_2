@@ -2,6 +2,7 @@ package com.meawallet.parkingapp.ui;
 
 import com.meawallet.parkingapp.domain.ParkingLot;
 import com.meawallet.parkingapp.dto.CreateParkingLotRequest;
+import com.meawallet.parkingapp.dto.UpdateParkingLotRequest;
 import com.meawallet.parkingapp.ui.exceptions.CreateParkingLotRequestException;
 import org.springframework.stereotype.Component;
 
@@ -38,6 +39,21 @@ public class UserInput {
         }
     }
 
+    public UpdateParkingLotRequest getUpdateParkingLotRequest() {
+        try {
+            System.out.println("Change Lot Name: ");
+            Scanner input = new Scanner(System.in);
+            String name = input.nextLine();
+
+            var request = new UpdateParkingLotRequest(name);
+            validateUpdateParkingLotRequest(request);
+
+            return request;
+        } catch (NumberFormatException e){
+            throw new NumberFormatException("Please enter integer number for Slot Count");
+        }
+    }
+
     public Integer requestIdNumber() {
         System.out.println("Enter Parking lot Id number: ");
         try {
@@ -54,6 +70,11 @@ public class UserInput {
         }
         if(request.getSlotCount() <=0 ) {
             throw new CreateParkingLotRequestException("Parking Lot must have at least 1 slot.");
+        }
+    }
+    private void validateUpdateParkingLotRequest(UpdateParkingLotRequest request) {
+        if (request.getName().length()==0) {
+            throw new CreateParkingLotRequestException("Parking Lot name can't be empty");
         }
     }
 }

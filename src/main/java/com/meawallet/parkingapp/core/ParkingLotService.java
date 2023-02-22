@@ -1,16 +1,21 @@
 package com.meawallet.parkingapp.core;
 
+import com.meawallet.parkingapp.database.ParkingLotHashMapRepository;
+import com.meawallet.parkingapp.database.ParkingLotHibernateRepository;
 import com.meawallet.parkingapp.database.ParkingLotRepository;
 import com.meawallet.parkingapp.database.ParkingSlotRepository;
 import com.meawallet.parkingapp.domain.ParkingLot;
-import com.meawallet.parkingapp.domain.ParkingSlot;
 import com.meawallet.parkingapp.ui.exceptions.EntityNotFoundException;
 import lombok.AllArgsConstructor;
+import lombok.Value;
 import org.springframework.stereotype.Component;
 
+@Value
 @Component
 @AllArgsConstructor
 public class ParkingLotService {
+   // ParkingLotHibernateRepository parkingLotHibernateRepository;
+   // ParkingLotHashMapRepository parkingLotHashMapRepository;
     ParkingLotRepository parkingLotRepository;
     ParkingSlotRepository parkingSlotRepository;
     public void createParkingLot(ParkingLot parkingLot) {
@@ -21,9 +26,25 @@ public class ParkingLotService {
         parkingLotRepository.saveWithSlots(parkingLot);
     }
 
-    public ParkingLot findById (Integer id) {
-        return parkingLotRepository.findParkingLotById(id)
+    public ParkingLot findParkingLotById(Integer id) {
+        return parkingLotRepository.getParkingLotById(id)
                 .orElseThrow(()->new EntityNotFoundException("Parking Lot not Found"));
+    }
+
+    public void updateParkingLot(ParkingLot parkingLot) {
+        var newName = "updatedName";
+        var parkingLotUpdated = ParkingLot.builder()
+                .id(parkingLot.getId())
+                .name(newName)
+                .slotCount(parkingLot.getSlotCount())
+                .emptySlots(parkingLot.getEmptySlots())
+                .build();
+        System.out.println(parkingLotUpdated);
+        parkingLotRepository.update(parkingLotUpdated);
+    }
+
+    public void deleteParkingLot(ParkingLot parkingLot) {
+        parkingLotRepository.delete(parkingLot);
     }
 
     public void showParkingLots() {
@@ -31,8 +52,7 @@ public class ParkingLotService {
         if(parkingLotList.isEmpty()) {
             System.out.println("There isn't any Parking Lot created yet");
         } else {
-            parkingLotList.stream()
-                    .forEach(System.out::println);
+            parkingLotList.forEach(System.out::println);
         }
     }
 
@@ -40,4 +60,6 @@ public class ParkingLotService {
         var parkingSlots = parkingSlotRepository.getAllParkingSlotsByParkingLotId(parkingLotId);
         parkingSlots.stream().forEach(System.out::println);
     }
+
+
 }
