@@ -18,7 +18,7 @@ public class ExitAction implements MenuActions {
 
     @Override
     public MenuName getMenuAppearanceName() {
-        return MenuName.MAIN;
+        return MenuName.SUB;
     }
 
     @Override

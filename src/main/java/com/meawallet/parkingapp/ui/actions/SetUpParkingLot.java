@@ -4,7 +4,7 @@ import com.meawallet.parkingapp.ui.MenuActions;
 import com.meawallet.parkingapp.ui.MenuName;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 public class SetUpParkingLot implements MenuActions {
 
     @Override

@@ -13,4 +13,4 @@ public interface ParkingLotRepository {
     public List<ParkingLot> getAllParkingLots();
     public void saveWithSlots(ParkingLot parkingLot);
 
-    }
+}

@@ -17,21 +17,17 @@ public class UserMenu {
         while (true) {
             try {
                 System.out.println("\nPARKING APP menu:");
-                var mainMenuList = getMenuByName(MenuName.MAIN);
-                print(mainMenuList);
-                Integer optionNr = userInput.requestMenuNumber();
+                printMenuActions(MenuName.MAIN);
+                var mainActionNr = requestMenuActionNumber();
 
-                if(mainMenuList.get(optionNr).hasSubMenu()) {
-                    var subMenuName = mainMenuList.get(optionNr).getSubMenuName();
-                    var subMenuList =  getMenuByName(subMenuName);
-
-                    System.out.println(mainMenuList.get(optionNr).getActionName());
-                    print(subMenuList);
-                    optionNr = userInput.requestMenuNumber();
-                    start(subMenuList,optionNr);
+                if(doesMainActionHasSubMenu(mainActionNr)) {
+                    var subMenuName = getSubMenuNameFromMainAction(mainActionNr);
+                    printMenuActions(subMenuName);
+                    var subActionNr = requestMenuActionNumber();
+                    startSubMenuAction(subActionNr);
 
                 } else {
-                    start(mainMenuList, optionNr);
+                    startMainMenuAction(mainActionNr);
                 }
 
             } catch (IndexOutOfBoundsException iob) {
@@ -44,17 +40,35 @@ public class UserMenu {
         }
     }
 
-    private List<MenuActions> getMenuByName(MenuName menuName) {
-        return menuActionsList.stream().filter(m->m.getMenuAppearanceName().equals(menuName)).toList();
-    }
-
-    private void print(List<MenuActions> menuActionList) {
-        for (int i = 0; i < menuActionList.size(); i++) {
-            System.out.println(i + ". " + menuActionList.get(i).getActionName());
+    private void printMenuActions(MenuName menuName) {
+        var menuActions = getMenuActionsByMenuName(menuName);
+        for (int i = 0; i < menuActions.size(); i++) {
+            System.out.println(i + ". " + menuActions.get(i).getActionName());
         }
     }
 
-    private void start(List<MenuActions> actionsList, Integer optionNr) {
-        actionsList.get(optionNr).execute();
+    private List<MenuActions> getMenuActionsByMenuName(MenuName menuName) {
+        return menuActionsList.stream().filter(m->m.getMenuAppearanceName().equals(menuName)).toList();
     }
+
+    private Integer requestMenuActionNumber() {
+        return userInput.requestMenuNumber();
+    }
+    private boolean doesMainActionHasSubMenu(Integer actionNumber){
+        var mainMenuActions = getMenuActionsByMenuName(MenuName.MAIN);
+        return mainMenuActions.get(actionNumber).hasSubMenu();
+    }
+    private MenuName getSubMenuNameFromMainAction(Integer actionNr) {
+        return getMenuActionsByMenuName(MenuName.MAIN).get(actionNr).getSubMenuName();
+    }
+
+    private void startMainMenuAction (Integer actionNumber) {
+        var actionList = getMenuActionsByMenuName(MenuName.MAIN);
+        actionList.get(actionNumber).execute();
+    }
+    private void startSubMenuAction (Integer actionNumber) {
+        var actionList = getMenuActionsByMenuName(MenuName.SUB);
+        actionList.get(actionNumber).execute();
+    }
+
 }

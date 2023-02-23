@@ -1,7 +1,6 @@
 package com.meawallet.parkingapp.ui.actions;
 
 import com.meawallet.parkingapp.core.ParkingLotService;
-import com.meawallet.parkingapp.dto.UpdateParkingLotRequest;
 import com.meawallet.parkingapp.ui.MenuActions;
 import com.meawallet.parkingapp.ui.MenuName;
 import com.meawallet.parkingapp.ui.UserInput;
@@ -39,10 +38,10 @@ public class UpdateParkingLotAction implements MenuActions {
     public void execute() {
         var id = userInput.requestIdNumber();
         var oldParkingLot = parkingLotService.findParkingLotById(id);
-        System.out.println("Searched Parking Lot: "  + oldParkingLot);
+        System.out.println("Searched Parking Lot for update: "  + oldParkingLot);
         var updateRequest = userInput.getUpdateParkingLotRequest(oldParkingLot);
         var parkingLotUpdated =  updateParkingLotRequestToDomain.convert(updateRequest);
         parkingLotService.updateParkingLot(parkingLotUpdated);
-        System.out.println(parkingLotService.findParkingLotById(id));
+        System.out.println("UPDATED");
     }
 }

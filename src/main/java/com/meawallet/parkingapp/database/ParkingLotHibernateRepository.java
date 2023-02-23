@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +25,7 @@ public class ParkingLotHibernateRepository implements ParkingLotRepository{
 
     @Override
     public ParkingLotEntity save(ParkingLot parkingLot) {
-        var entity = converterDomainToEntity.convert(parkingLot, null);
+        var entity = converterDomainToEntity.convert(parkingLot);
         sessionFactory.getCurrentSession().persist(entity);
         return entity;
     }
@@ -36,15 +37,15 @@ public class ParkingLotHibernateRepository implements ParkingLotRepository{
     }
     @Override
     public ParkingLotEntity update(ParkingLot parkingLot) {
-        var entity = converterDomainToEntity.convert(parkingLot, parkingLot.getId());
+        var entity = converterDomainToEntity.convert(parkingLot);
         sessionFactory.getCurrentSession().merge(entity);
         return entity;
     }
 
     @Override
     public void delete(ParkingLot parkingLot) {
-        var entity= converterDomainToEntity.convert(parkingLot, parkingLot.getId());
-        sessionFactory.getCurrentSession().remove(entity);
+        var parkingLotEntity = converterDomainToEntity.convert(parkingLot);
+        sessionFactory.getCurrentSession().remove(parkingLotEntity);
     }
 
     @Override

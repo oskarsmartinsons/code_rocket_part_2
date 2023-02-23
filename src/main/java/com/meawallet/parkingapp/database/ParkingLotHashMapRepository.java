@@ -1,3 +1,4 @@
+/*
 package com.meawallet.parkingapp.database;
 
 
@@ -69,3 +70,4 @@ public class ParkingLotHashMapRepository implements ParkingLotRepository{
 
 
 }
+*/

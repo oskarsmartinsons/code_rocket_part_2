@@ -39,11 +39,7 @@ public class CreateParkingLotAction implements MenuActions {
     public void execute() {
         var request = userInput.getCreateParkingLotRequest();
         var lot = converter.convert(request);
-        System.out.println("Parking Lot unit: ");
         parkingLotService.createParkingLot(lot);
-        System.out.println(lot);
-/*        System.out.println("Parking Lot with slots: ");
-        parkingLotService.createParkingLotWithSlots(lot);
-        System.out.println(lot);*/
+        System.out.println("CREATED");
     }
 }

@@ -1,6 +1,6 @@
 package com.meawallet.parkingapp.core;
 
-import com.meawallet.parkingapp.database.ParkingLotHashMapRepository;
+//import com.meawallet.parkingapp.database.ParkingLotHashMapRepository;
 import com.meawallet.parkingapp.database.ParkingLotHibernateRepository;
 import com.meawallet.parkingapp.database.ParkingLotRepository;
 import com.meawallet.parkingapp.database.ParkingSlotRepository;

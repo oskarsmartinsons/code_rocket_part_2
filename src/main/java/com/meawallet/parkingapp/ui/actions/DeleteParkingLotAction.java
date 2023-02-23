@@ -38,6 +38,6 @@ public class DeleteParkingLotAction implements MenuActions {
         var id = userInput.requestIdNumber();
         var parkingLot = parkingLotService.findParkingLotById(id);
         parkingLotService.deleteParkingLot(parkingLot);
-        System.out.println("Deleted: " + parkingLot);
+        System.out.println("DELETED Parking Lot with Id: " + id);
     }
 }
