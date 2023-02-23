@@ -22,7 +22,7 @@ public class ReturnSubAction implements MenuActions {
     }
 
     @Override
-    public String getName() {
+    public String getActionName() {
         return "Return";
     }
 

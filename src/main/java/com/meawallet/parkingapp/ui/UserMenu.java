@@ -1,11 +1,11 @@
 package com.meawallet.parkingapp.ui;
 
-import com.meawallet.parkingapp.ui.exceptions.CreateParkingLotRequestException;
+import com.meawallet.parkingapp.ui.exceptions.EntityNotFoundException;
+import com.meawallet.parkingapp.ui.exceptions.ParkingLotRequestException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -25,7 +25,7 @@ public class UserMenu {
                     var subMenuName = mainMenuList.get(optionNr).getSubMenuName();
                     var subMenuList =  getMenuByName(subMenuName);
 
-                    System.out.println(mainMenuList.get(optionNr).getName());
+                    System.out.println(mainMenuList.get(optionNr).getActionName());
                     print(subMenuList);
                     optionNr = userInput.requestMenuNumber();
                     start(subMenuList,optionNr);
@@ -36,10 +36,9 @@ public class UserMenu {
 
             } catch (IndexOutOfBoundsException iob) {
                 System.out.println("Please enter correct menu number: " + iob.getMessage() +"\n");
-            } catch (CreateParkingLotRequestException createEx) {
-                System.out.println(createEx.getMessage());
-            }
-            catch (Exception e) {
+            } catch (ParkingLotRequestException | EntityNotFoundException requestException) {
+                System.out.println(requestException.getMessage());
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -51,7 +50,7 @@ public class UserMenu {
 
     private void print(List<MenuActions> menuActionList) {
         for (int i = 0; i < menuActionList.size(); i++) {
-            System.out.println(i + ". " + menuActionList.get(i).getName());
+            System.out.println(i + ". " + menuActionList.get(i).getActionName());
         }
     }
 

@@ -31,16 +31,16 @@ public class UpdateParkingLotAction implements MenuActions {
     }
 
     @Override
-    public String getName() {
+    public String getActionName() {
         return "Update Parking Lot by Id";
     }
 
     @Override
     public void execute() {
         var id = userInput.requestIdNumber();
-        System.out.println("Parking Lot: " );
-        var parkingLot = parkingLotService.findParkingLotById(id);
-        var updateRequest = userInput.getUpdateParkingLotRequest();
+        var oldParkingLot = parkingLotService.findParkingLotById(id);
+        System.out.println("Searched Parking Lot: "  + oldParkingLot);
+        var updateRequest = userInput.getUpdateParkingLotRequest(oldParkingLot);
         var parkingLotUpdated =  updateParkingLotRequestToDomain.convert(updateRequest);
         parkingLotService.updateParkingLot(parkingLotUpdated);
         System.out.println(parkingLotService.findParkingLotById(id));

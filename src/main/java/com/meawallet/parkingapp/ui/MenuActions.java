@@ -4,6 +4,6 @@ public interface MenuActions {
     boolean hasSubMenu();
     MenuName getSubMenuName();
     MenuName getMenuAppearanceName();
-    String getName();
+    String getActionName();
     void execute();
 }

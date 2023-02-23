@@ -23,7 +23,7 @@ public class ParkingLotHibernateRepository implements ParkingLotRepository{
     private final ParkingLotEntityToParkingLotDomain converterEntityToDomain;
 
     @Override
-    public ParkingLotEntity save (ParkingLot parkingLot) {
+    public ParkingLotEntity save(ParkingLot parkingLot) {
         var entity = converterDomainToEntity.convert(parkingLot, null);
         sessionFactory.getCurrentSession().persist(entity);
         return entity;
@@ -48,7 +48,6 @@ public class ParkingLotHibernateRepository implements ParkingLotRepository{
     }
 
     @Override
-   // @SuppressWarnings("unchecked")
     public List<ParkingLot> getAllParkingLots() {
             var session = sessionFactory.getCurrentSession();
 

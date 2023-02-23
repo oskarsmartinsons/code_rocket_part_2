@@ -29,7 +29,7 @@ public class FindParkingLotAction implements MenuActions {
     }
 
     @Override
-    public String getName() {
+    public String getActionName() {
         return "Find Parking Lot by Id";
     }
 

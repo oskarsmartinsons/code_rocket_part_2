@@ -22,7 +22,7 @@ public class ExitAction implements MenuActions {
     }
 
     @Override
-    public String getName() {
+    public String getActionName() {
         return "Exit";
     }
 

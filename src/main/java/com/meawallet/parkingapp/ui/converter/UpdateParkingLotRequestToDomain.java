@@ -8,7 +8,10 @@ import org.springframework.stereotype.Component;
 public class UpdateParkingLotRequestToDomain {
     public ParkingLot convert(UpdateParkingLotRequest request) {
         return ParkingLot.builder()
+                .id(request.getId())
                 .name(request.getName())
+                .slotCount(request.getSlotCount())
+                .emptySlots(request.getEmptySlots())
                 .build();
     }
 }

@@ -31,16 +31,17 @@ public class ParkingLotService {
                 .orElseThrow(()->new EntityNotFoundException("Parking Lot not Found"));
     }
 
-    public void updateParkingLot(ParkingLot parkingLot) {
-        var newName = "updatedName";
+    public void updateParkingLot(ParkingLot updatedParkingLot) {
+/*        var newName = "updatedName";
         var parkingLotUpdated = ParkingLot.builder()
-                .id(parkingLot.getId())
+                .id(updatedParkingLot.getId())
                 .name(newName)
-                .slotCount(parkingLot.getSlotCount())
-                .emptySlots(parkingLot.getEmptySlots())
+                .slotCount(updatedParkingLot.getSlotCount())
+                .emptySlots(updatedParkingLot.getEmptySlots())
                 .build();
         System.out.println(parkingLotUpdated);
-        parkingLotRepository.update(parkingLotUpdated);
+        parkingLotRepository.update(parkingLotUpdated);*/
+        parkingLotRepository.update(updatedParkingLot);
     }
 
     public void deleteParkingLot(ParkingLot parkingLot) {

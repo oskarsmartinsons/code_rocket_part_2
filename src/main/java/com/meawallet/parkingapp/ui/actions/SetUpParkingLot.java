@@ -24,7 +24,7 @@ public class SetUpParkingLot implements MenuActions {
     }
 
     @Override
-    public String getName() {
+    public String getActionName() {
         return "SET UP my Parking Lot";
     }
 

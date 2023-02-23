@@ -37,7 +37,7 @@ public class CreateParkingLotActionTest {
     @Test
     void shouldReturnCreateParkingLotAsActionName () {
         String expectedResult = "Create new Parking Lot";
-        String actualResult = createParkingLotAction.getName();
+        String actualResult = createParkingLotAction.getActionName();
         assertEquals(expectedResult, actualResult);
     }
 
