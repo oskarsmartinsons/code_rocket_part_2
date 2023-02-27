@@ -25,9 +25,9 @@ public class ParkingLotHibernateRepository implements ParkingLotRepository{
 
     @Override
     public ParkingLotEntity save(ParkingLot parkingLot) {
-        var entity = converterDomainToEntity.convert(parkingLot);
-        sessionFactory.getCurrentSession().persist(entity);
-        return entity;
+        var parkingLotEntity = converterDomainToEntity.convert(parkingLot);
+        sessionFactory.getCurrentSession().persist(parkingLotEntity);
+        return parkingLotEntity;
     }
     @Override
     public Optional<ParkingLot> getParkingLotById(Integer id) {
@@ -37,14 +37,16 @@ public class ParkingLotHibernateRepository implements ParkingLotRepository{
     }
     @Override
     public ParkingLotEntity update(ParkingLot parkingLot) {
-        var entity = converterDomainToEntity.convert(parkingLot);
-        sessionFactory.getCurrentSession().merge(entity);
-        return entity;
+        var parkingLotEntity = converterDomainToEntity.convert(parkingLot);
+        parkingLotEntity.setId(parkingLot.getId());
+        sessionFactory.getCurrentSession().merge(parkingLotEntity);
+        return parkingLotEntity;
     }
 
     @Override
     public void delete(ParkingLot parkingLot) {
         var parkingLotEntity = converterDomainToEntity.convert(parkingLot);
+        parkingLotEntity.setId(parkingLot.getId());
         sessionFactory.getCurrentSession().remove(parkingLotEntity);
     }
 

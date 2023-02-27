@@ -12,5 +12,4 @@ public interface ParkingLotRepository {
     public void delete(ParkingLot parkingLot);
     public List<ParkingLot> getAllParkingLots();
     public void saveWithSlots(ParkingLot parkingLot);
-
 }

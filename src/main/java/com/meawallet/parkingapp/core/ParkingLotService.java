@@ -1,7 +1,5 @@
 package com.meawallet.parkingapp.core;
 
-//import com.meawallet.parkingapp.database.ParkingLotHashMapRepository;
-import com.meawallet.parkingapp.database.ParkingLotHibernateRepository;
 import com.meawallet.parkingapp.database.ParkingLotRepository;
 import com.meawallet.parkingapp.database.ParkingSlotRepository;
 import com.meawallet.parkingapp.domain.ParkingLot;
@@ -14,11 +12,11 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 public class ParkingLotService {
-   // ParkingLotHibernateRepository parkingLotHibernateRepository;
-   // ParkingLotHashMapRepository parkingLotHashMapRepository;
     ParkingLotRepository parkingLotRepository;
     ParkingSlotRepository parkingSlotRepository;
+
     public void createParkingLot(ParkingLot parkingLot) {
+        if(parkingLot==null) {throw new IllegalArgumentException("ParkingLot arg is invalid");}
         parkingLotRepository.save(parkingLot);
     }
 
@@ -27,24 +25,18 @@ public class ParkingLotService {
     }
 
     public ParkingLot findParkingLotById(Integer id) {
+        if(id==null) {throw new IllegalArgumentException("Id arg is invalid");}
         return parkingLotRepository.getParkingLotById(id)
                 .orElseThrow(()->new EntityNotFoundException("Parking Lot not Found"));
     }
 
     public void updateParkingLot(ParkingLot updatedParkingLot) {
-/*        var newName = "updatedName";
-        var parkingLotUpdated = ParkingLot.builder()
-                .id(updatedParkingLot.getId())
-                .name(newName)
-                .slotCount(updatedParkingLot.getSlotCount())
-                .emptySlots(updatedParkingLot.getEmptySlots())
-                .build();
-        System.out.println(parkingLotUpdated);
-        parkingLotRepository.update(parkingLotUpdated);*/
+        if(updatedParkingLot==null) {throw new IllegalArgumentException("ParkingLot arg is invalid");}
         parkingLotRepository.update(updatedParkingLot);
     }
 
     public void deleteParkingLot(ParkingLot parkingLot) {
+        if(parkingLot==null) {throw new IllegalArgumentException("ParkingLot arg is invalid");}
         parkingLotRepository.delete(parkingLot);
     }
 
@@ -61,6 +53,4 @@ public class ParkingLotService {
         var parkingSlots = parkingSlotRepository.getAllParkingSlotsByParkingLotId(parkingLotId);
         parkingSlots.stream().forEach(System.out::println);
     }
-
-
 }

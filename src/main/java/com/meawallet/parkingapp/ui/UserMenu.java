@@ -4,7 +4,6 @@ import com.meawallet.parkingapp.ui.exceptions.EntityNotFoundException;
 import com.meawallet.parkingapp.ui.exceptions.ParkingLotRequestException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @Component

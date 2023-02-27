@@ -22,25 +22,20 @@ import static org.mockito.Mockito.when;
 public class CreateParkingLotActionTest {
     @Mock
     private UserInput userInput;
-
     @Mock
     private ParkingLotService parkingLotService;
-
     @Mock
     private CreateParkingLotRequestToDomain converter;
     @Captor
     private ArgumentCaptor<CreateParkingLotRequest> captor;
-
     @InjectMocks
     private CreateParkingLotAction createParkingLotAction;
-
     @Test
     void shouldReturnCreateParkingLotAsActionName () {
         String expectedResult = "Create new Parking Lot";
         String actualResult = createParkingLotAction.getActionName();
         assertEquals(expectedResult, actualResult);
     }
-
     @Test
     void shouldCallParkingLotServiceToCreateParkingLot() {
         CreateParkingLotRequest request = request();
@@ -60,8 +55,8 @@ public class CreateParkingLotActionTest {
         assertEquals(50, capturedRequest.getSlotCount());
         assertEquals(50, capturedRequest.getEmptySlots());
 
-      //  verify(parkingLotService).createParkingLot(parkingLot());
-        verify(parkingLotService).createParkingLotWithSlots(parkingLot());
+        verify(parkingLotService).createParkingLot(parkingLot());
+      //  verify(parkingLotService).createParkingLotWithSlots(parkingLot());
     }
 
     private CreateParkingLotRequest request() {
