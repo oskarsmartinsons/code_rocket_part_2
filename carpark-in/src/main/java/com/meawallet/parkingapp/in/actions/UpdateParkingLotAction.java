@@ -1,7 +1,7 @@
-/*
 package com.meawallet.parkingapp.in.actions;
 
-import com.meawallet.parkingapp.core.ParkingLotService;
+import com.meawallet.parkingapp.core.port.in.FindParkingLotUseCase;
+import com.meawallet.parkingapp.core.port.in.UpdateParkingLotUseCase;
 import com.meawallet.parkingapp.in.MenuActions;
 import com.meawallet.parkingapp.in.MenuName;
 import com.meawallet.parkingapp.in.UserInput;
@@ -13,7 +13,8 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class UpdateParkingLotAction implements MenuActions {
     private final UserInput userInput;
-    private final ParkingLotService parkingLotService;
+    private final UpdateParkingLotUseCase updateParkingLotUseCase;
+    private final FindParkingLotUseCase findParkingLotUseCase;
     private final UpdateParkingLotRequestToDomain updateParkingLotRequestToDomain;
     @Override
     public boolean hasSubMenu() {
@@ -38,12 +39,11 @@ public class UpdateParkingLotAction implements MenuActions {
     @Override
     public void execute() {
         var id = userInput.requestIdNumber();
-        var oldParkingLot = parkingLotService.findParkingLotById(id);
+        var oldParkingLot = findParkingLotUseCase.getParkingLot(id);
         System.out.println("Searched Parking Lot for update: "  + oldParkingLot);
         var updateRequest = userInput.getUpdateParkingLotRequest(oldParkingLot);
         var parkingLotUpdated =  updateParkingLotRequestToDomain.convert(updateRequest);
-        parkingLotService.updateParkingLot(parkingLotUpdated);
+        updateParkingLotUseCase.update(parkingLotUpdated);
         System.out.println("UPDATED");
     }
 }
-*/

@@ -36,7 +36,7 @@ public class ParkingLotHibernateRepository implements ParkingLotRepository{
         return Optional.ofNullable(entity)
                 .map(converterEntityToDomain::convert);
     }
-/*    @Override
+    @Override
     public ParkingLotEntity update(ParkingLot parkingLot) {
         var parkingLotEntity = converterDomainToEntity.convert(parkingLot);
         parkingLotEntity.setId(parkingLot.getId());
@@ -49,7 +49,7 @@ public class ParkingLotHibernateRepository implements ParkingLotRepository{
         var parkingLotEntity = converterDomainToEntity.convert(parkingLot);
         parkingLotEntity.setId(parkingLot.getId());
         sessionFactory.getCurrentSession().remove(parkingLotEntity);
-    }*/
+    }
 
 /*    @Override
     public List<ParkingLot> getAllParkingLots() {

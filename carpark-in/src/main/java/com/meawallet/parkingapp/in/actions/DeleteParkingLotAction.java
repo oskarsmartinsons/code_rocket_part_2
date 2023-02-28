@@ -1,7 +1,7 @@
-/*
 package com.meawallet.parkingapp.in.actions;
 
-import com.meawallet.parkingapp.core.ParkingLotService;
+import com.meawallet.parkingapp.core.port.in.DeleteParkingLotUseCase;
+import com.meawallet.parkingapp.core.port.in.FindParkingLotUseCase;
 import com.meawallet.parkingapp.in.MenuActions;
 import com.meawallet.parkingapp.in.MenuName;
 import com.meawallet.parkingapp.in.UserInput;
@@ -12,7 +12,8 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class DeleteParkingLotAction implements MenuActions {
     private final UserInput userInput;
-    private final ParkingLotService parkingLotService;
+    private final DeleteParkingLotUseCase deleteParkingLotUseCase;
+    private final FindParkingLotUseCase findParkingLotUseCase;
 
     @Override
     public boolean hasSubMenu() {
@@ -37,9 +38,8 @@ public class DeleteParkingLotAction implements MenuActions {
     @Override
     public void execute() {
         var id = userInput.requestIdNumber();
-        var parkingLot = parkingLotService.findParkingLotById(id);
-        parkingLotService.deleteParkingLot(parkingLot);
+        var parkingLot = findParkingLotUseCase.getParkingLot(id);
+        deleteParkingLotUseCase.deleteParkingLot(parkingLot);
         System.out.println("DELETED Parking Lot with Id: " + id);
     }
 }
-*/
