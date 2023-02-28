@@ -51,7 +51,7 @@ public class ParkingLotHibernateRepository implements ParkingLotRepository{
         sessionFactory.getCurrentSession().remove(parkingLotEntity);
     }
 
-/*    @Override
+    @Override
     public List<ParkingLot> getAllParkingLots() {
             var session = sessionFactory.getCurrentSession();
 
@@ -65,8 +65,8 @@ public class ParkingLotHibernateRepository implements ParkingLotRepository{
                     .collect(Collectors.toList());
     }
 
-    @Override
-    public void saveWithSlots(ParkingLot parkingLot) {
+  /*     @Override
+ public void saveWithSlots(ParkingLot parkingLot) {
 
     }*/
 }

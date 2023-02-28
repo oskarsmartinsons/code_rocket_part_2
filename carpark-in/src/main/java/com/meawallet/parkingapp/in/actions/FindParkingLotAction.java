@@ -36,7 +36,7 @@ public class FindParkingLotAction implements MenuActions {
     @Override
     public void execute() {
         var lotId = userInput.requestIdNumber();
-        var parkingLot = findParkingLotUseCase.getParkingLot(lotId);
+        var parkingLot = findParkingLotUseCase.findParkingLot(lotId);
         System.out.println("Search result: \n" + parkingLot);
       //  System.out.println("----------- SLOTS --------------");
       //  parkingLotService.showParkingSlotsByParkingLotId(lotId);

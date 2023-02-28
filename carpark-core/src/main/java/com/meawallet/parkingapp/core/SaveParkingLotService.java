@@ -12,6 +12,7 @@ public class SaveParkingLotService implements SaveParkingLotUseCase {
     private final SaveParkingLotPort saveParkingLotPort;
     @Override
     public void saveParkingLot(ParkingLot parkingLot) {
+        if(parkingLot==null) {throw new IllegalArgumentException("ParkingLot arg is invalid");}
         saveParkingLotPort.save(parkingLot);
     }
 }

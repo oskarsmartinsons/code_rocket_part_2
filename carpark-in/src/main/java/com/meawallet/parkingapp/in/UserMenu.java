@@ -32,8 +32,8 @@ public class UserMenu {
 
             } catch (IndexOutOfBoundsException iob) {
                 System.out.println("Please enter correct menu number: " + iob.getMessage() +"\n");
-            } catch (ParkingLotRequestException | EntityNotFoundException requestException) {
-                System.out.println(requestException.getMessage());
+            } catch (ParkingLotRequestException | EntityNotFoundException | IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -54,6 +54,7 @@ public class UserMenu {
     private Integer requestMenuActionNumber() {
         return userInput.requestMenuNumber();
     }
+
     private boolean doesMainActionHasSubMenu(Integer actionNumber){
         var mainMenuActions = getMenuActionsByMenuName(MenuName.MAIN);
         return mainMenuActions.get(actionNumber).hasSubMenu();

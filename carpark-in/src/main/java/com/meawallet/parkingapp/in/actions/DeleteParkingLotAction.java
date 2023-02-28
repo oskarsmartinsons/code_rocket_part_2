@@ -38,7 +38,7 @@ public class DeleteParkingLotAction implements MenuActions {
     @Override
     public void execute() {
         var id = userInput.requestIdNumber();
-        var parkingLot = findParkingLotUseCase.getParkingLot(id);
+        var parkingLot = findParkingLotUseCase.findParkingLot(id);
         deleteParkingLotUseCase.deleteParkingLot(parkingLot);
         System.out.println("DELETED Parking Lot with Id: " + id);
     }

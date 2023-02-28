@@ -39,7 +39,7 @@ public class UpdateParkingLotAction implements MenuActions {
     @Override
     public void execute() {
         var id = userInput.requestIdNumber();
-        var oldParkingLot = findParkingLotUseCase.getParkingLot(id);
+        var oldParkingLot = findParkingLotUseCase.findParkingLot(id);
         System.out.println("Searched Parking Lot for update: "  + oldParkingLot);
         var updateRequest = userInput.getUpdateParkingLotRequest(oldParkingLot);
         var parkingLotUpdated =  updateParkingLotRequestToDomain.convert(updateRequest);

@@ -11,7 +11,6 @@ public interface ParkingLotRepository {
     public Optional<ParkingLot> getParkingLotById(Integer id);
     public ParkingLotEntity update(ParkingLot parkingLot);
     public void delete(ParkingLot parkingLot);
-
-   // public List<ParkingLot> getAllParkingLots();
+    public List<ParkingLot> getAllParkingLots();
    //  public void saveWithSlots(ParkingLot parkingLot);
 }

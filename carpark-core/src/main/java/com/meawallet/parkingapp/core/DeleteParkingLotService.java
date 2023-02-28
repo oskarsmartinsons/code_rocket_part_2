@@ -13,6 +13,7 @@ public class DeleteParkingLotService implements DeleteParkingLotUseCase{
 
     @Override
     public void deleteParkingLot(ParkingLot parkingLot) {
+        if(parkingLot==null) {throw new IllegalArgumentException("ParkingLot arg is invalid");}
         deleteParkingLotPort.delete(parkingLot);
     }
 }

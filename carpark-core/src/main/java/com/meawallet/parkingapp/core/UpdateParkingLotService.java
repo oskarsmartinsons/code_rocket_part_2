@@ -11,7 +11,8 @@ import org.springframework.stereotype.Component;
 public class UpdateParkingLotService implements UpdateParkingLotUseCase {
     private final UpdateParkingLotPort updateParkingLotPort;
     @Override
-    public void update(ParkingLot parkingLot) {
-        updateParkingLotPort.update(parkingLot);
+    public void update(ParkingLot updatedParkingLot) {
+        if(updatedParkingLot==null) {throw new IllegalArgumentException("ParkingLot arg is invalid");}
+        updateParkingLotPort.update(updatedParkingLot);
     }
 }

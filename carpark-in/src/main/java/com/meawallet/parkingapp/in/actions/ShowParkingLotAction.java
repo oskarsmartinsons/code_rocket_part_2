@@ -1,7 +1,6 @@
-/*
 package com.meawallet.parkingapp.in.actions;
 
-import com.meawallet.parkingapp.core.ParkingLotService;
+import com.meawallet.parkingapp.core.port.in.ShowParkingLotsUseCase;
 import com.meawallet.parkingapp.in.MenuActions;
 import com.meawallet.parkingapp.in.MenuName;
 import lombok.AllArgsConstructor;
@@ -10,8 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 public class ShowParkingLotAction implements MenuActions {
-    ParkingLotService parkingLotService;
-
+    private final ShowParkingLotsUseCase showParkingLotsUseCase;
     @Override
     public boolean hasSubMenu() {
         return false;
@@ -35,7 +33,6 @@ public class ShowParkingLotAction implements MenuActions {
     @Override
     public void execute() {
         System.out.println("\nMy Parking Lots:");
-        parkingLotService.showParkingLots();
+        showParkingLotsUseCase.showParkingLots();
     }
 }
-*/
