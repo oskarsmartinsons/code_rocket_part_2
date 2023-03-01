@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 public class SaveParkingLotService implements SaveParkingLotUseCase {
     private final SaveParkingLotPort saveParkingLotPort;
     @Override
-    public void saveParkingLot(ParkingLot parkingLot) {
+    public ParkingLot saveParkingLot(ParkingLot parkingLot) {
         if(parkingLot==null) {throw new IllegalArgumentException("ParkingLot arg is invalid");}
-        saveParkingLotPort.save(parkingLot);
+        return saveParkingLotPort.save(parkingLot);
     }
 }

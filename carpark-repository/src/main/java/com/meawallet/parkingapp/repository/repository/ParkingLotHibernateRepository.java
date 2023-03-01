@@ -25,10 +25,10 @@ public class ParkingLotHibernateRepository implements ParkingLotRepository{
     private final ParkingLotEntityToParkingLotDomain converterEntityToDomain;
 
     @Override
-    public ParkingLotEntity save(ParkingLot parkingLot) {
+    public ParkingLot save(ParkingLot parkingLot) {
         var parkingLotEntity = converterDomainToEntity.convert(parkingLot);
         sessionFactory.getCurrentSession().persist(parkingLotEntity);
-        return parkingLotEntity;
+        return converterEntityToDomain.convert(parkingLotEntity);
     }
   @Override
     public Optional<ParkingLot> getParkingLotById(Integer id) {

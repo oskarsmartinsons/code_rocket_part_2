@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class SaveParkingLotAdapter implements SaveParkingLotPort {
     private final ParkingLotRepository parkingLotRepository;
     @Override
-    public void save(ParkingLot parkingLot) {
-        parkingLotRepository.save(parkingLot);
+    public ParkingLot save(ParkingLot parkingLot) {
+        return parkingLotRepository.save(parkingLot);
     }
 }
