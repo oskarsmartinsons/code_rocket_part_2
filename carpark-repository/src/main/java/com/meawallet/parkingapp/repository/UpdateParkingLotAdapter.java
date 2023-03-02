@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class UpdateParkingLotAdapter implements UpdateParkingLotPort {
     private final ParkingLotRepository parkingLotRepository;
     @Override
-    public void update(ParkingLot parkingLot) {
-        parkingLotRepository.update(parkingLot);
+    public ParkingLot update(ParkingLot parkingLot) {
+        return parkingLotRepository.update(parkingLot);
     }
 }

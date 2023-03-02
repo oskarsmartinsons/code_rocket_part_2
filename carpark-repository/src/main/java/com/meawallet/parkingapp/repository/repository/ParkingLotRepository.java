@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface ParkingLotRepository {
     public ParkingLot save(ParkingLot parkingLot);
     public Optional<ParkingLot> getParkingLotById(Integer id);
-    public ParkingLotEntity update(ParkingLot parkingLot);
+    public ParkingLot update(ParkingLot parkingLot);
     public void delete(ParkingLot parkingLot);
     public List<ParkingLot> getAllParkingLots();
    //  public void saveWithSlots(ParkingLot parkingLot);

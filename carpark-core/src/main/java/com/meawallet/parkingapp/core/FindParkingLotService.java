@@ -13,7 +13,7 @@ public class FindParkingLotService implements FindParkingLotUseCase {
     private final FindParkingLotByIdPort findParkingLotByIdPort;
 
     @Override
-    public ParkingLot findParkingLot(Integer id) {
+    public ParkingLot findParkingLotById(Integer id) {
         if(id==null) {throw new IllegalArgumentException("Id arg is invalid");}
         return findParkingLotByIdPort.findById(id)
                 .orElseThrow(()->new IllegalArgumentException("Parking Lot not Found"));

@@ -8,7 +8,6 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
 
@@ -37,11 +36,11 @@ public class ParkingLotHibernateRepository implements ParkingLotRepository{
                 .map(converterEntityToDomain::convert);
     }
     @Override
-    public ParkingLotEntity update(ParkingLot parkingLot) {
+    public ParkingLot update(ParkingLot parkingLot) {
         var parkingLotEntity = converterDomainToEntity.convert(parkingLot);
         parkingLotEntity.setId(parkingLot.getId());
         sessionFactory.getCurrentSession().merge(parkingLotEntity);
-        return parkingLotEntity;
+        return converterEntityToDomain.convert(parkingLotEntity);
     }
 
     @Override

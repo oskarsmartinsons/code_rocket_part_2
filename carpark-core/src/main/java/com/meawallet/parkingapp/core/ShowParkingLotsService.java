@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 public class ShowParkingLotsService implements ShowParkingLotsUseCase {
-    private final ShowParkingLotsPort showAllParkingLotsPort;
+    private final ShowParkingLotsPort showParkingLotsPort;
     @Override
     public void showParkingLots() {
-        var parkingLotList = showAllParkingLotsPort.getAll();
+        var parkingLotList = showParkingLotsPort.getAll();
         if(parkingLotList.isEmpty()) {
             System.out.println("There isn't any Parking Lot created yet");
         } else {
