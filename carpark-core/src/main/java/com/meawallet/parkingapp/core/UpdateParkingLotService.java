@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 public class UpdateParkingLotService implements UpdateParkingLotUseCase {
     private final FindParkingLotByIdPort findParkingLotByIdPort;
     private final UpdateParkingLotPort updateParkingLotPort;
-
     private final SaveParkingLotPort saveParkingLotPort;
 /*    @Override
     public void updateParkingLot(Integer id, ParkingLot updatedParkingLot) {
@@ -25,19 +24,41 @@ public class UpdateParkingLotService implements UpdateParkingLotUseCase {
 
     @Override
     public ParkingLot updateParkingLot(Integer id, ParkingLot updatedParkingLot) {
-        var optionalResource = findParkingLotByIdPort.findById(id);
+/*        var optionalResource = findParkingLotByIdPort.findById(id);
         if (optionalResource.isPresent()) {
             var existingResource = optionalResource.get();
-            existingResource.builder()
+            existingResource = ParkingLot.builder()
+                    .id(existingResource.getId())
                     .name(updatedParkingLot.getName())
                     .slotCount(updatedParkingLot.getSlotCount())
                     .emptySlots(updatedParkingLot.getEmptySlots())
                     .build();
 
-            return saveParkingLotPort.save(existingResource);
+
+            return updateParkingLotPort.update(existingResource);
 
         } else {
             throw new IllegalArgumentException("Resource with ID " + id + " not found");
-        }
+        }*/
+
+/*        var existingParkingLot = findParkingLotByIdPort.findById(id)
+                .orElseThrow(()->new IllegalArgumentException("Parking Lot not found"));
+
+        var parkingLotForUpdate = ParkingLot.builder()
+                .id(existingParkingLot.getId())
+                .name(updatedParkingLot.getName())
+                .slotCount(updatedParkingLot.getSlotCount())
+                .emptySlots(updatedParkingLot.getEmptySlots())
+                .build();*/
+
+        var parkingLotForUpdate = findParkingLotByIdPort.findById(id)
+                .map(existingParkingLot -> ParkingLot.builder()
+                        .id(existingParkingLot.getId())
+                        .name(updatedParkingLot.getName())
+                        .slotCount(updatedParkingLot.getSlotCount())
+                        .emptySlots(updatedParkingLot.getEmptySlots())
+                        .build())
+                .orElseThrow(()->new IllegalArgumentException("Parking Lot not found"));
+        return updateParkingLotPort.update(parkingLotForUpdate);
     }
 }

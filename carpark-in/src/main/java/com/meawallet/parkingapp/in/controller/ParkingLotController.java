@@ -5,10 +5,7 @@ import com.meawallet.parkingapp.core.port.in.FindParkingLotUseCase;
 import com.meawallet.parkingapp.core.port.in.SaveParkingLotUseCase;
 import com.meawallet.parkingapp.core.port.in.UpdateParkingLotUseCase;
 import com.meawallet.parkingapp.domain.ParkingLot;
-import com.meawallet.parkingapp.in.converter.CreateParkingLotInRequestToDomain;
-import com.meawallet.parkingapp.in.converter.ParkingLotToCreateParkingLotInResponseConverter;
-import com.meawallet.parkingapp.in.converter.ParkingLotToGetParkingLotInResponseConverter;
-import com.meawallet.parkingapp.in.converter.UpdateParkingLotInRequestToDomain;
+import com.meawallet.parkingapp.in.converter.*;
 import com.meawallet.parkingapp.in.dto.*;
 import org.springframework.http.HttpStatus;
 
@@ -29,6 +26,7 @@ public class ParkingLotController {
     private final UpdateParkingLotInRequestToDomain updateParkingLotInRequestToDomain;
     private final ParkingLotToGetParkingLotInResponseConverter parkingLotToGetParkingLotInResponseConverter;
     private final ParkingLotToCreateParkingLotInResponseConverter parkingLotToCreateParkingLotInResponseConverter;
+    private final ParkingLotToUpdateParkingLotInResponseConverter parkingLotToUpdateParkingLotInResponseConverter;
 
     @PostMapping(value = "/parking")
     public ResponseEntity<CreateParkingLotInResponse> createParkingLot (@RequestBody CreateParkingLotInRequest request) {
@@ -58,13 +56,31 @@ public class ParkingLotController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/parking/{id}")
+/*    @PutMapping(value = "/parking/{id}")
     public ResponseEntity<Integer>  updateParkingLot(@PathVariable Integer id, @RequestBody ParkingLot parkingLot) {
       //  var parkingLotForUpdate = updateParkingLotInRequestToDomain.convert(request);
         updateParkingLotUseCase.updateParkingLot(id, parkingLot);
 
      //   return new ResponseEntity<>();
         return new ResponseEntity<>(id, HttpStatus.OK);
+    }*/
+
+    @PutMapping(value = "/parking/{id}")
+    public ResponseEntity<UpdateParkingLotInResponse> updateParkingLot (@PathVariable Integer id,
+                                                                        @RequestBody UpdateParkingLotInRequest request) {
+
+        var parkingLotForUpdate = updateParkingLotInRequestToDomain.convert(request);
+        var updatedParkingLot = updateParkingLotUseCase.updateParkingLot(id, parkingLotForUpdate);
+        var responseBody = parkingLotToUpdateParkingLotInResponseConverter.convert(updatedParkingLot);
+
+        var location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(responseBody.id())
+                .toUri();
+
+        return ResponseEntity.created(location)
+                .body(responseBody);
     }
 
 
