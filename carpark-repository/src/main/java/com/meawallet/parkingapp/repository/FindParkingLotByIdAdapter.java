@@ -13,7 +13,6 @@ public class FindParkingLotByIdAdapter implements FindParkingLotByIdPort {
     private final ParkingLotRepository parkingLotRepository;
     @Override
     public Optional<ParkingLot> findById(Integer id) {
-
         return parkingLotRepository.getParkingLotById(id);
     }
 }

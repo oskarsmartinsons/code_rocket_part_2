@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 public class UpdateParkingLotInRequestToDomain {
     public ParkingLot convert(UpdateParkingLotInRequest request) {
         return ParkingLot.builder()
-             //   .id(request.id())
                 .name(request.name())
                 .slotCount(request.slotCount())
                 .emptySlots(request.emptySlots())

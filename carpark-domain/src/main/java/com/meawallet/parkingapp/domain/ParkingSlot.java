@@ -7,6 +7,7 @@ import lombok.Value;
 @Builder
 public class ParkingSlot {
     Integer id;
+    Integer slotNumber;
     boolean isEmpty;
     Integer parkingLotId;
     Integer carId;

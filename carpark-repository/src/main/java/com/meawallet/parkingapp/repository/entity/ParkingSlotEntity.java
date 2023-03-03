@@ -16,7 +16,9 @@ public class ParkingSlotEntity {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     Integer id;
-    @Column (name = "is_Empty")
+    @Column (name = "slot_number")
+    Integer slotNumber;
+    @Column (name = "is_empty")
     boolean isEmpty;
     @Column (name = "parking_lot_id")
     Integer parkingLotId;

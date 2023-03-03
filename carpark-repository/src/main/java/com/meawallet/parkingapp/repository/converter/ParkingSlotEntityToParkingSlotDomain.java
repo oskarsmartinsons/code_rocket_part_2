@@ -9,8 +9,10 @@ public class ParkingSlotEntityToParkingSlotDomain {
     public ParkingSlot convert(ParkingSlotEntity entity) {
         return ParkingSlot.builder()
                 .id(entity.getId())
+                .slotNumber(entity.getSlotNumber())
                 .isEmpty(entity.isEmpty())
                 .parkingLotId(entity.getParkingLotId())
+                .carId(entity.getCarId())
                 .build();
     }
 }

@@ -28,44 +28,29 @@ public class ParkingLotController {
     private final ParkingLotToCreateParkingLotInResponseConverter parkingLotToCreateParkingLotInResponseConverter;
     private final ParkingLotToUpdateParkingLotInResponseConverter parkingLotToUpdateParkingLotInResponseConverter;
 
-    @PostMapping(value = "/parking")
+    @PostMapping(value = "/parking-lots")
     public ResponseEntity<CreateParkingLotInResponse> createParkingLot (@RequestBody CreateParkingLotInRequest request) {
         var parkingLot = createParkingLotInRequestToDomain.convert(request);
         var savedParkingLot = saveParkingLotUseCase.saveParkingLot(parkingLot);
+
         var responseBody = parkingLotToCreateParkingLotInResponseConverter.convert(savedParkingLot);
 
-        var location = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(responseBody.id())
-                .toUri();
-
-        return ResponseEntity.created(location)
-                .body(responseBody);
+        return ResponseEntity.ok(responseBody);
     }
 
-    @GetMapping(value = "/parking/{id}")
+    @GetMapping(value = "/parking-lots/{id}")
     public GetParkingLotInResponse findParkingLotById(@PathVariable Integer id) {
         var parkingLot = findParkingLotUseCase.findParkingLotById(id);
         return parkingLotToGetParkingLotInResponseConverter.convert(parkingLot);
     }
 
-    @DeleteMapping(value = "/parking/{id}")
-    public ResponseEntity<Integer> deleteParkingLotById(@PathVariable Integer id) {
+    @DeleteMapping(value = "/parking-lots/{id}")
+    public ResponseEntity<String> deleteParkingLotById(@PathVariable Integer id) {
         deleteParkingLotUseCase.deleteParkingLotById(id);
-        return new ResponseEntity<>(id, HttpStatus.OK);
+        return new ResponseEntity<>("Deleted id: " + id, HttpStatus.OK);
     }
 
-/*    @PutMapping(value = "/parking/{id}")
-    public ResponseEntity<Integer>  updateParkingLot(@PathVariable Integer id, @RequestBody ParkingLot parkingLot) {
-      //  var parkingLotForUpdate = updateParkingLotInRequestToDomain.convert(request);
-        updateParkingLotUseCase.updateParkingLot(id, parkingLot);
-
-     //   return new ResponseEntity<>();
-        return new ResponseEntity<>(id, HttpStatus.OK);
-    }*/
-
-    @PutMapping(value = "/parking/{id}")
+    @PutMapping(value = "/parking-lots/{id}")
     public ResponseEntity<UpdateParkingLotInResponse> updateParkingLot (@PathVariable Integer id,
                                                                         @RequestBody UpdateParkingLotInRequest request) {
 
@@ -73,19 +58,12 @@ public class ParkingLotController {
         var updatedParkingLot = updateParkingLotUseCase.updateParkingLot(id, parkingLotForUpdate);
         var responseBody = parkingLotToUpdateParkingLotInResponseConverter.convert(updatedParkingLot);
 
-        var location = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(responseBody.id())
-                .toUri();
-
-        return ResponseEntity.created(location)
-                .body(responseBody);
+        return ResponseEntity.ok(responseBody);
     }
 
 
     @GetMapping(value = "/test")
-    public String findUserById() {
+    public String test() {
         return "Test";
     }
 }
