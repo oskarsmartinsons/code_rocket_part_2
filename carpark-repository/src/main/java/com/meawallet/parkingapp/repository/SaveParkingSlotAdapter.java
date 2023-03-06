@@ -1,3 +1,4 @@
+/*
 package com.meawallet.parkingapp.repository;
 
 import com.meawallet.parkingapp.core.port.out.SaveParkingSlotPort;
@@ -18,3 +19,4 @@ public class SaveParkingSlotAdapter implements SaveParkingSlotPort {
         return parkingSlotRepository.save(parkingSlot);
     }
 }
+*/

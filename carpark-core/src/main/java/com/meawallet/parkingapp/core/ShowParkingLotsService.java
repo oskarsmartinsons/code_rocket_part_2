@@ -1,3 +1,4 @@
+/*
 package com.meawallet.parkingapp.core;
 
 import com.meawallet.parkingapp.core.port.in.ShowParkingLotsUseCase;
@@ -19,3 +20,4 @@ public class ShowParkingLotsService implements ShowParkingLotsUseCase {
         }
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package com.meawallet.parkingapp.repository.repository;
 
 import com.meawallet.parkingapp.domain.ParkingSlot;
@@ -52,10 +53,13 @@ public class ParkingSlotHibernateRepository implements ParkingSlotRepository{
         sessionFactory.getCurrentSession().remove(parkingSlotEntity);
     }
 
+*/
 /*    public List<ParkingSlot> getAllParkingSlotsByParkingLotId(Integer parkingLotId) {
         return repository.values().stream()
                 .filter(entity->entity.getParkingLotId().equals(parkingLotId))
                 .map(converterSlotEntityToDomain::convert)
                 .collect(Collectors.toList());
-    }*/
+    }*//*
+
 }
+*/

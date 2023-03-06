@@ -1,3 +1,4 @@
+/*
 package com.meawallet.parkingapp.repository;
 
 import com.meawallet.parkingapp.core.port.out.FindParkingSlotByIdPort;
@@ -18,3 +19,4 @@ public class FindParkingSlotByIdAdapter implements FindParkingSlotByIdPort {
         return parkingSlotRepository.getParkingSlotById(id);
     }
 }
+*/

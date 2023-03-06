@@ -1,3 +1,4 @@
+/*
 package com.meawallet.parkingapp.repository;
 
 import com.meawallet.parkingapp.core.port.out.UpdateParkingLotPort;
@@ -17,3 +18,4 @@ public class UpdateParkingSlotAdapter implements UpdateParkingSlotPort {
         return parkingSlotRepository.update(parkingSlot);
     }
 }
+*/

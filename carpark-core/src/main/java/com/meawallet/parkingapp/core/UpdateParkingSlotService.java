@@ -1,3 +1,4 @@
+/*
 package com.meawallet.parkingapp.core;
 
 import com.meawallet.parkingapp.core.port.in.UpdateParkingSlotUseCase;
@@ -27,3 +28,4 @@ public class UpdateParkingSlotService implements UpdateParkingSlotUseCase {
         return updateParkingSlotPort.update(updatedParkingSlot);
     }
 }
+*/

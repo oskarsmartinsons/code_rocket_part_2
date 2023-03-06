@@ -1,3 +1,4 @@
+/*
 package com.meawallet.parkingapp.core;
 
 import com.meawallet.parkingapp.core.port.in.DeleteParkingSlotUseCase;
@@ -19,3 +20,4 @@ public class DeleteParkingSlotService implements DeleteParkingSlotUseCase {
         deleteParkingSlotPort.delete(parkingSlotToDelete);
     }
 }
+*/

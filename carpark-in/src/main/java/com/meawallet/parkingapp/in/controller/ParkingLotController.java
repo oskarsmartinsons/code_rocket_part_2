@@ -19,11 +19,11 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @AllArgsConstructor
 public class ParkingLotController {
     private final SaveParkingLotUseCase saveParkingLotUseCase;
-    private final FindParkingLotUseCase findParkingLotUseCase;
-    private final DeleteParkingLotUseCase deleteParkingLotUseCase;
-    private final UpdateParkingLotUseCase updateParkingLotUseCase;
+ //   private final FindParkingLotUseCase findParkingLotUseCase;
+ //   private final DeleteParkingLotUseCase deleteParkingLotUseCase;
+ //   private final UpdateParkingLotUseCase updateParkingLotUseCase;
     private final CreateParkingLotInRequestToDomain createParkingLotInRequestToDomain;
-    private final UpdateParkingLotInRequestToDomain updateParkingLotInRequestToDomain;
+ //   private final UpdateParkingLotInRequestToDomain updateParkingLotInRequestToDomain;
     private final ParkingLotToGetParkingLotInResponseConverter parkingLotToGetParkingLotInResponseConverter;
     private final ParkingLotToCreateParkingLotInResponseConverter parkingLotToCreateParkingLotInResponseConverter;
     private final ParkingLotToUpdateParkingLotInResponseConverter parkingLotToUpdateParkingLotInResponseConverter;
@@ -37,14 +37,14 @@ public class ParkingLotController {
 
         return ResponseEntity.ok(responseBody);
     }
-
+/*
     @GetMapping(value = "/parking-lots/{id}")
     public GetParkingLotInResponse findParkingLotById(@PathVariable Integer id) {
         var parkingLot = findParkingLotUseCase.findParkingLotById(id);
         return parkingLotToGetParkingLotInResponseConverter.convert(parkingLot);
-    }
+    }*/
 
-    @DeleteMapping(value = "/parking-lots/{id}")
+/*    @DeleteMapping(value = "/parking-lots/{id}")
     public ResponseEntity<String> deleteParkingLotById(@PathVariable Integer id) {
         deleteParkingLotUseCase.deleteParkingLotById(id);
         return new ResponseEntity<>("Deleted id: " + id, HttpStatus.OK);
@@ -61,7 +61,7 @@ public class ParkingLotController {
         return ResponseEntity.ok(responseBody);
     }
 
-
+*/
     @GetMapping(value = "/test")
     public String test() {
         return "Test";

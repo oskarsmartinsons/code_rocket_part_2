@@ -1,3 +1,4 @@
+/*
 package com.meawallet.parkingapp.repository.repository;
 
 import com.meawallet.parkingapp.domain.ParkingLot;
@@ -64,8 +65,11 @@ public class ParkingLotHibernateRepository implements ParkingLotRepository{
                     .collect(Collectors.toList());
     }
 
-  /*     @Override
+  */
+/*     @Override
  public void saveWithSlots(ParkingLot parkingLot) {
 
-    }*/
+    }*//*
+
 }
+*/

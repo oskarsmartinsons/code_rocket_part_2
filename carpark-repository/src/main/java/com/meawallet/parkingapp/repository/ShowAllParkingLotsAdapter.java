@@ -1,3 +1,4 @@
+/*
 package com.meawallet.parkingapp.repository;
 
 import com.meawallet.parkingapp.core.port.out.ShowParkingLotsPort;
@@ -14,6 +15,8 @@ public class ShowAllParkingLotsAdapter implements ShowParkingLotsPort {
     private final ParkingLotRepository parkingLotRepository;
     @Override
     public List<ParkingLot> getAll() {
-        return parkingLotRepository.getAllParkingLots();
+     //   return parkingLotRepository.getAllParkingLots();
+        return null;
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package com.meawallet.parkingapp.in.controller;
 
 import com.meawallet.parkingapp.core.DeleteParkingSlotService;
@@ -5,14 +6,14 @@ import com.meawallet.parkingapp.core.port.in.DeleteParkingSlotUseCase;
 import com.meawallet.parkingapp.core.port.in.FindParkingSlotUseCase;
 import com.meawallet.parkingapp.core.port.in.SaveParkingSlotUseCase;
 import com.meawallet.parkingapp.core.port.in.UpdateParkingSlotUseCase;
-import com.meawallet.parkingapp.core.port.out.SaveParkingSlotPort;
+//import com.meawallet.parkingapp.core.port.out.SaveParkingSlotPort;
 import com.meawallet.parkingapp.in.converter.*;
 import com.meawallet.parkingapp.in.dto.*;
 import lombok.AllArgsConstructor;
-import org.hibernate.sql.Delete;
+//import org.hibernate.sql.Delete;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+//import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -61,3 +62,4 @@ public class ParkingSlotController {
         return ResponseEntity.ok(responseBody);
     }
 }
+*/

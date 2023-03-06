@@ -1,3 +1,4 @@
+/*
 package com.meawallet.parkingapp.core;
 
 import com.meawallet.parkingapp.core.port.in.FindParkingSlotUseCase;
@@ -17,3 +18,4 @@ public class FindParkingSlotService implements FindParkingSlotUseCase {
                 .orElseThrow(()-> new IllegalArgumentException("Parking Slot not found"));
     }
 }
+*/

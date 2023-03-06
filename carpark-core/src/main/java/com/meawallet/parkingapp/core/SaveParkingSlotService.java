@@ -1,3 +1,4 @@
+/*
 package com.meawallet.parkingapp.core;
 
 import com.meawallet.parkingapp.core.port.in.SaveParkingSlotUseCase;
@@ -17,3 +18,4 @@ public class SaveParkingSlotService implements SaveParkingSlotUseCase {
         return saveParkingSlotPort.save(parkingSlot);
     }
 }
+*/

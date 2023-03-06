@@ -1,3 +1,4 @@
+/*
 
 package com.meawallet.parkingapp.core;
 
@@ -20,3 +21,4 @@ public class FindParkingLotService implements FindParkingLotUseCase {
     }
 }
 
+*/

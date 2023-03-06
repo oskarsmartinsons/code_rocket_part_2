@@ -1,3 +1,4 @@
+/*
 package com.meawallet.parkingapp.repository;
 
 import com.meawallet.parkingapp.core.port.out.DeleteParkingLotPort;
@@ -12,6 +13,7 @@ public class DeleteParkingLotAdapter implements DeleteParkingLotPort {
     private final ParkingLotRepository parkingLotRepository;
     @Override
     public void delete(ParkingLot parkingLot) {
-        parkingLotRepository.delete(parkingLot);
+        //parkingLotRepository.delete(parkingLot);
     }
 }
+*/

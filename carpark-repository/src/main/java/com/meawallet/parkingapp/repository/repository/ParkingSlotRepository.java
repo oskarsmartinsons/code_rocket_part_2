@@ -1,3 +1,4 @@
+/*
 package com.meawallet.parkingapp.repository.repository;
 
 import com.meawallet.parkingapp.domain.ParkingSlot;
@@ -10,3 +11,4 @@ public interface ParkingSlotRepository {
     void delete(ParkingSlot parkingSlot);
   //  public List<ParkingSlot> getAllParkingSlots();
 }
+*/
