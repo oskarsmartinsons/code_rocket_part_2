@@ -1,20 +1,15 @@
-/*
 package com.meawallet.parkingapp.in.controller;
 
-import com.meawallet.parkingapp.core.DeleteParkingSlotService;
-import com.meawallet.parkingapp.core.port.in.DeleteParkingSlotUseCase;
-import com.meawallet.parkingapp.core.port.in.FindParkingSlotUseCase;
-import com.meawallet.parkingapp.core.port.in.SaveParkingSlotUseCase;
-import com.meawallet.parkingapp.core.port.in.UpdateParkingSlotUseCase;
-//import com.meawallet.parkingapp.core.port.out.SaveParkingSlotPort;
+import com.meawallet.parkingapp.core.port.in.parkingSlotUseCases.*;
 import com.meawallet.parkingapp.in.converter.*;
 import com.meawallet.parkingapp.in.dto.*;
 import lombok.AllArgsConstructor;
-//import org.hibernate.sql.Delete;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
@@ -23,11 +18,11 @@ public class ParkingSlotController {
     private final FindParkingSlotUseCase findParkingSlotUseCase;
     private final DeleteParkingSlotUseCase deleteParkingSlotUseCase;
     private final UpdateParkingSlotUseCase updateParkingSlotUseCase;
+    private final FindAllParkingSlotsUseCase findAllParkingSlotsUseCase;
     private final CreateParkingSlotInRequestToDomain createParkingSlotInRequestToDomain;
     private final ParkingSlotToCreateParkingSlotInResponseConverter parkingSlotToCreateParkingSlotInResponseConverter;
     private final ParkingSlotToGetParkingSlotInResponseConverter parkingSlotToGetParkingSlotInResponseConverter;
     private final UpdateParkingSlotInRequestToDomain updateParkingSlotInRequestToDomain;
-    private final ParkingSlotToUpdateParkingSlotInResponseConverter parkingSlotToUpdateParkingSlotInResponseConverter;
 
     @PostMapping(value = "/parking-slots")
     public ResponseEntity<CreateParkingSlotInResponse> createParkingSlot (@RequestBody CreateParkingSlotInRequest request) {
@@ -46,20 +41,22 @@ public class ParkingSlotController {
     }
 
     @DeleteMapping(value = "/parking-slots/{id}")
-    public ResponseEntity<String> deleteParkingSlotById(@PathVariable Integer id) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteParkingSlotById(@PathVariable Integer id) {
         deleteParkingSlotUseCase.deleteParkingSlotById(id);
-        return new ResponseEntity<>("Deleted id: " + id, HttpStatus.OK);
     }
 
     @PutMapping(value = "/parking-slots/{id}")
-    public ResponseEntity<UpdateParkingSlotInResponse> updateParkingSlot (@PathVariable Integer id,
-                                                                        @RequestBody UpdateParkingSlotInRequest request) {
+    public void updateParkingSlot (@RequestBody UpdateParkingSlotInRequest request, @PathVariable Integer id) {
 
-        var parkingSlotForUpdate = updateParkingSlotInRequestToDomain.convert(request);
-        var updatedParkingSlot = updateParkingSlotUseCase.updateParkingSlot(id, parkingSlotForUpdate);
-        var responseBody = parkingSlotToUpdateParkingSlotInResponseConverter.convert(updatedParkingSlot);
+        var parkingSlotForUpdate = updateParkingSlotInRequestToDomain.convert(request, id);
+        updateParkingSlotUseCase.updateParkingSlot(parkingSlotForUpdate);
+    }
 
-        return ResponseEntity.ok(responseBody);
+    @GetMapping(value = "/parking-slots")
+    public List<GetParkingSlotInResponse> findAllParkingSlots() {
+        return findAllParkingSlotsUseCase.findAllParkingSlots().stream()
+                .map(parkingSlotToGetParkingSlotInResponseConverter::convert)
+                .collect(Collectors.toList());
     }
 }
-*/

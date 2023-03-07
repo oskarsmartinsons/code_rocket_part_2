@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 public class ParkingSlotDomainToParkingSlotEntity {
     public ParkingSlotEntity convert(ParkingSlot slot) {
         return ParkingSlotEntity.builder()
+                .id(slot.getId())
                 .slotNumber(slot.getSlotNumber())
                 .isEmpty(slot.isEmpty())
                 .parkingLotId(slot.getParkingLotId())

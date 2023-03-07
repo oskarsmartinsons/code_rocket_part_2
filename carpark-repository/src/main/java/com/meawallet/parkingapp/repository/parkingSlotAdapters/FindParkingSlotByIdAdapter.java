@@ -1,8 +1,8 @@
-/*
-package com.meawallet.parkingapp.repository;
+package com.meawallet.parkingapp.repository.parkingSlotAdapters;
 
-import com.meawallet.parkingapp.core.port.out.FindParkingSlotByIdPort;
+import com.meawallet.parkingapp.core.port.out.parkingSlotPorts.FindParkingSlotByIdPort;
 import com.meawallet.parkingapp.domain.ParkingSlot;
+import com.meawallet.parkingapp.repository.converter.ParkingSlotEntityToParkingSlotDomain;
 import com.meawallet.parkingapp.repository.repository.ParkingSlotRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -13,10 +13,11 @@ import java.util.Optional;
 @AllArgsConstructor
 public class FindParkingSlotByIdAdapter implements FindParkingSlotByIdPort {
     private final ParkingSlotRepository parkingSlotRepository;
+    private final ParkingSlotEntityToParkingSlotDomain parkingSlotEntityToParkingSlotDomain;
 
     @Override
     public Optional<ParkingSlot> findById(Integer id) {
-        return parkingSlotRepository.getParkingSlotById(id);
+        return parkingSlotRepository.findById(id)
+                .map(parkingSlotEntityToParkingSlotDomain::convert);
     }
 }
-*/

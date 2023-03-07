@@ -1,4 +1,4 @@
-package com.meawallet.parkingapp.core.port.out;
+package com.meawallet.parkingapp.core.port.out.parkingSlotPorts;
 
 import com.meawallet.parkingapp.domain.ParkingSlot;
 

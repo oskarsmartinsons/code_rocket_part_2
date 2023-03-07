@@ -1,8 +1,6 @@
-/*
-package com.meawallet.parkingapp.repository;
+package com.meawallet.parkingapp.repository.parkingSlotAdapters;
 
-import com.meawallet.parkingapp.core.port.out.DeleteParkingSlotPort;
-import com.meawallet.parkingapp.domain.ParkingSlot;
+import com.meawallet.parkingapp.core.port.out.parkingSlotPorts.DeleteParkingSlotPort;
 import com.meawallet.parkingapp.repository.repository.ParkingSlotRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -12,8 +10,7 @@ import org.springframework.stereotype.Component;
 public class DeleteParkingSlotAdapter implements DeleteParkingSlotPort {
     private final ParkingSlotRepository parkingSlotRepository;
 
-    public void delete(ParkingSlot parkingSlot) {
-        parkingSlotRepository.delete(parkingSlot);
+    public void deleteById(Integer id) {
+        parkingSlotRepository.deleteById(id);
     }
 }
-*/
