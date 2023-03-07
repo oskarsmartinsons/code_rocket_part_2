@@ -1,7 +1,7 @@
 /*
 package com.meawallet.parkingapp.repository;
 
-import com.meawallet.parkingapp.core.port.out.UpdateParkingLotPort;
+import com.meawallet.parkingapp.core.port.out.parkingLot.UpdateParkingLotPort;
 import com.meawallet.parkingapp.core.port.out.UpdateParkingSlotPort;
 import com.meawallet.parkingapp.domain.ParkingSlot;
 import com.meawallet.parkingapp.repository.repository.ParkingSlotRepository;

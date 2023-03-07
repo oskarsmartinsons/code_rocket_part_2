@@ -1,7 +1,7 @@
-package com.meawallet.parkingapp.core;
+package com.meawallet.parkingapp.core.parkingLotServices;
 
-import com.meawallet.parkingapp.core.port.in.SaveParkingLotUseCase;
-import com.meawallet.parkingapp.core.port.out.SaveParkingLotPort;
+import com.meawallet.parkingapp.core.port.in.parkingLotUseCases.SaveParkingLotUseCase;
+import com.meawallet.parkingapp.core.port.out.parkingLotPorts.SaveParkingLotPort;
 import com.meawallet.parkingapp.domain.ParkingLot;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

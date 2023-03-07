@@ -8,9 +8,10 @@ import org.springframework.stereotype.Component;
 public class ParkingLotDomainToParkingLotEntity {
     public ParkingLotEntity convert(ParkingLot parkingLot) {
             return ParkingLotEntity.builder()
-                .name(parkingLot.getName())
-                .slotCount(parkingLot.getSlotCount())
-                .emptySlots(parkingLot.getEmptySlots())
-                .build();
+                    .id(parkingLot.getId())
+                    .name(parkingLot.getName())
+                    .slotCount(parkingLot.getSlotCount())
+                    .emptySlots(parkingLot.getEmptySlots())
+                    .build();
     }
 }
