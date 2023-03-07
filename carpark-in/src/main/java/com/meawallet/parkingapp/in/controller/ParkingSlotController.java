@@ -1,8 +1,14 @@
 package com.meawallet.parkingapp.in.controller;
 
 import com.meawallet.parkingapp.core.port.in.parkingSlotUseCases.*;
-import com.meawallet.parkingapp.in.converter.*;
-import com.meawallet.parkingapp.in.dto.*;
+import com.meawallet.parkingapp.in.converter.parkingSlot.CreateParkingSlotInRequestToDomainConverter;
+import com.meawallet.parkingapp.in.converter.parkingSlot.ParkingSlotToCreateParkingSlotInResponseConverter;
+import com.meawallet.parkingapp.in.converter.parkingSlot.ParkingSlotToGetParkingSlotInResponseConverter;
+import com.meawallet.parkingapp.in.converter.parkingSlot.UpdateParkingSlotInRequestToDomainConverter;
+import com.meawallet.parkingapp.in.dto.parkingSlot.CreateParkingSlotInRequest;
+import com.meawallet.parkingapp.in.dto.parkingSlot.CreateParkingSlotInResponse;
+import com.meawallet.parkingapp.in.dto.parkingSlot.GetParkingSlotInResponse;
+import com.meawallet.parkingapp.in.dto.parkingSlot.UpdateParkingSlotInRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,14 +25,14 @@ public class ParkingSlotController {
     private final DeleteParkingSlotUseCase deleteParkingSlotUseCase;
     private final UpdateParkingSlotUseCase updateParkingSlotUseCase;
     private final FindAllParkingSlotsUseCase findAllParkingSlotsUseCase;
-    private final CreateParkingSlotInRequestToDomain createParkingSlotInRequestToDomain;
+    private final CreateParkingSlotInRequestToDomainConverter createParkingSlotInRequestToDomainConverter;
     private final ParkingSlotToCreateParkingSlotInResponseConverter parkingSlotToCreateParkingSlotInResponseConverter;
     private final ParkingSlotToGetParkingSlotInResponseConverter parkingSlotToGetParkingSlotInResponseConverter;
-    private final UpdateParkingSlotInRequestToDomain updateParkingSlotInRequestToDomain;
+    private final UpdateParkingSlotInRequestToDomainConverter updateParkingSlotInRequestToDomainConverter;
 
     @PostMapping(value = "/parking-slots")
     public ResponseEntity<CreateParkingSlotInResponse> createParkingSlot (@RequestBody CreateParkingSlotInRequest request) {
-        var parkingSlot = createParkingSlotInRequestToDomain.convert(request);
+        var parkingSlot = createParkingSlotInRequestToDomainConverter.convert(request);
         var savedParkingLot = saveParkingSlotUseCase.saveParkingSlot(parkingSlot);
 
         var responseBody = parkingSlotToCreateParkingSlotInResponseConverter.convert(savedParkingLot);
@@ -49,7 +55,7 @@ public class ParkingSlotController {
     @PutMapping(value = "/parking-slots/{id}")
     public void updateParkingSlot (@RequestBody UpdateParkingSlotInRequest request, @PathVariable Integer id) {
 
-        var parkingSlotForUpdate = updateParkingSlotInRequestToDomain.convert(request, id);
+        var parkingSlotForUpdate = updateParkingSlotInRequestToDomainConverter.convert(request, id);
         updateParkingSlotUseCase.updateParkingSlot(parkingSlotForUpdate);
     }
 

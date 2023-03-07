@@ -1,9 +1,15 @@
 package com.meawallet.parkingapp.in.controller;
 
 import com.meawallet.parkingapp.core.port.in.parkingLotUseCases.*;
-import com.meawallet.parkingapp.in.converter.*;
-import com.meawallet.parkingapp.in.dto.*;
 
+import com.meawallet.parkingapp.in.converter.parkingLot.CreateParkingLotInRequestToDomainConverter;
+import com.meawallet.parkingapp.in.converter.parkingLot.ParkingLotToCreateParkingLotInResponseConverter;
+import com.meawallet.parkingapp.in.converter.parkingLot.ParkingLotToGetParkingLotInResponseConverter;
+import com.meawallet.parkingapp.in.converter.parkingLot.UpdateParkingLotInRequestToDomainConverter;
+import com.meawallet.parkingapp.in.dto.parkingLot.CreateParkingLotInRequest;
+import com.meawallet.parkingapp.in.dto.parkingLot.CreateParkingLotInResponse;
+import com.meawallet.parkingapp.in.dto.parkingLot.GetParkingLotInResponse;
+import com.meawallet.parkingapp.in.dto.parkingLot.UpdateParkingLotInRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,14 +27,14 @@ public class ParkingLotController {
     private final DeleteParkingLotUseCase deleteParkingLotUseCase;
     private final UpdateParkingLotUseCase updateParkingLotUseCase;
     private final FindAllParkingLotsUseCase findAllParkingLotsUseCase;
-    private final CreateParkingLotInRequestToDomain createParkingLotInRequestToDomain;
-    private final UpdateParkingLotInRequestToDomain updateParkingLotInRequestToDomain;
+    private final CreateParkingLotInRequestToDomainConverter createParkingLotInRequestToDomainConverter;
+    private final UpdateParkingLotInRequestToDomainConverter updateParkingLotInRequestToDomainConverter;
     private final ParkingLotToGetParkingLotInResponseConverter parkingLotToGetParkingLotInResponseConverter;
     private final ParkingLotToCreateParkingLotInResponseConverter parkingLotToCreateParkingLotInResponseConverter;
 
     @PostMapping(value = "/parking-lots")
     public ResponseEntity<CreateParkingLotInResponse> createParkingLot (@RequestBody CreateParkingLotInRequest request) {
-        var parkingLot = createParkingLotInRequestToDomain.convert(request);
+        var parkingLot = createParkingLotInRequestToDomainConverter.convert(request);
         var savedParkingLot = saveParkingLotUseCase.saveParkingLot(parkingLot);
 
         var responseBody = parkingLotToCreateParkingLotInResponseConverter.convert(savedParkingLot);
@@ -51,7 +57,7 @@ public class ParkingLotController {
     @PutMapping(value = "/parking-lots/{id}")
         public void updateParkingLot (@RequestBody UpdateParkingLotInRequest request, @PathVariable Integer id) {
 
-            var parkingLotForUpdate = updateParkingLotInRequestToDomain.convert(request, id);
+            var parkingLotForUpdate = updateParkingLotInRequestToDomainConverter.convert(request, id);
             updateParkingLotUseCase.updateParkingLot(parkingLotForUpdate);
     }
 
