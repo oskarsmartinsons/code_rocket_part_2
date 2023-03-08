@@ -1,5 +1,6 @@
 package com.meawallet.parkingapp.repository.entity;
 
+import com.meawallet.parkingapp.domain.ParkingLot;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,13 +16,11 @@ import lombok.NoArgsConstructor;
 public class ParkingSlotEntity {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    Integer id;
+    @Column(name = "slot_id")
+    private Integer id;
     @Column (name = "slot_number")
-    Integer slotNumber;
+    private Integer slotNumber;
     @Column (name = "is_empty")
-    boolean isEmpty;
-    @Column (name = "parking_lot_id")
-    Integer parkingLotId;
-    @Column (name = "car_id")
-    Integer carId;
+    private boolean isEmpty;
+
 }

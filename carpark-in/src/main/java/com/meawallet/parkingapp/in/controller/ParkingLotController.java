@@ -2,6 +2,7 @@ package com.meawallet.parkingapp.in.controller;
 
 import com.meawallet.parkingapp.core.port.in.parkingLotUseCases.*;
 
+import com.meawallet.parkingapp.domain.ParkingSlot;
 import com.meawallet.parkingapp.in.converter.parkingLot.CreateParkingLotInRequestToDomainConverter;
 import com.meawallet.parkingapp.in.converter.parkingLot.ParkingLotToCreateParkingLotInResponseConverter;
 import com.meawallet.parkingapp.in.converter.parkingLot.ParkingLotToGetParkingLotInResponseConverter;
@@ -27,6 +28,7 @@ public class ParkingLotController {
     private final DeleteParkingLotUseCase deleteParkingLotUseCase;
     private final UpdateParkingLotUseCase updateParkingLotUseCase;
     private final FindAllParkingLotsUseCase findAllParkingLotsUseCase;
+    private final GetParkingSlotsForParkingLotUseCase getParkingSlotsForParkingLotUseCase;
     private final CreateParkingLotInRequestToDomainConverter createParkingLotInRequestToDomainConverter;
     private final UpdateParkingLotInRequestToDomainConverter updateParkingLotInRequestToDomainConverter;
     private final ParkingLotToGetParkingLotInResponseConverter parkingLotToGetParkingLotInResponseConverter;
@@ -68,6 +70,10 @@ public class ParkingLotController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping(value = "/parking-lots/{parkingLotId}/parking-slots")
+    public List<ParkingSlot> getParkingSlotsForParkingLot(@PathVariable Integer parkingLotId) {
+        return getParkingSlotsForParkingLotUseCase.findParkingSlotsByParkingLotId(parkingLotId);
+    }
 
     @GetMapping(value = "/test")
     public String test() {

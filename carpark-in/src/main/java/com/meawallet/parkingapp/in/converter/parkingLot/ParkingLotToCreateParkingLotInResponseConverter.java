@@ -11,7 +11,8 @@ public class ParkingLotToCreateParkingLotInResponseConverter {
                 parkingLot.getId(),
                 parkingLot.getName(),
                 parkingLot.getSlotCount(),
-                parkingLot.getEmptySlots()
+                parkingLot.getEmptySlots(),
+                parkingLot.getParkingSlots()
         );
     }
 }

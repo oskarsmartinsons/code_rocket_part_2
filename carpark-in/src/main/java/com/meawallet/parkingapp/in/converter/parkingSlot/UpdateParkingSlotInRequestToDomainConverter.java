@@ -11,8 +11,8 @@ public class UpdateParkingSlotInRequestToDomainConverter {
                 .id(id)
                 .slotNumber(request.slotNumber())
                 .isEmpty(request.isEmpty())
-                .parkingLotId(request.parkingLotId())
-                .carId(request.carId())
+             //   .parkingLot(request.parkingLot())
+             //   .carId(request.carId())
                 .build();
     }
 }

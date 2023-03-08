@@ -1,14 +1,15 @@
 package com.meawallet.parkingapp.domain;
 
-import lombok.Builder;
-import lombok.Value;
+import lombok.*;
 
-@Value
+@Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ParkingSlot {
-    Integer id;
-    Integer slotNumber;
-    boolean isEmpty;
-    Integer parkingLotId;
-    Integer carId;
+    private Integer id;
+    private Integer slotNumber;
+    private boolean isEmpty;
+   // ParkingLot parkingLot;
+   // Integer carId;
 }
