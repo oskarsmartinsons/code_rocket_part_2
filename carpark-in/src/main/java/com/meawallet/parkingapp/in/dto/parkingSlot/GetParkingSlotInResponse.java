@@ -6,7 +6,5 @@ public record GetParkingSlotInResponse (
         Integer id,
         Integer slotNumber,
         boolean isEmpty
-        //ParkingLot parkingLot,
-       // Integer carId
 ){
 }

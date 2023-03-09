@@ -29,7 +29,7 @@ public class ParkingLotEntity {
     private Integer emptySlots;
 
     @OneToMany (cascade = CascadeType.ALL)
-   // @JoinColumn(name="fk_lot_id", referencedColumnName = "lot_id")
+   // @Column(name = "related_parking_slots")
     private List<ParkingSlotEntity> parkingSlotEntities;
 
 }

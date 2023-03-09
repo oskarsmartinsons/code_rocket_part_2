@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="create.parking_lot.table" author="oskars.martinsons">
+        <createTable tableName="parking_lots">
+            <column name="id" type="INTEGER" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="slot_count" type="INTEGER"/>
+            <column name="empty_slots" type="INTEGER"/>
+            <column name="related_parking_slots" type="ARRAY"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create.parking_slot.table" author="oskars.martinsons">
+        <createTable tableName="parking_slots">
+            <column name="id" type="INTEGER" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="slot_number" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="slot_count" type="INTEGER"/>
+            <column name="is_empty" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create.car.table" author="oskars.martinsons">
+        <createTable tableName="cars">
+            <column name="id" type="INTEGER" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="registration_number" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="car_make" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

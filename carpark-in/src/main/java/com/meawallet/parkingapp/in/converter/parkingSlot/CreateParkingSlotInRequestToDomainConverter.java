@@ -10,8 +10,6 @@ public class CreateParkingSlotInRequestToDomainConverter {
         return ParkingSlot.builder()
                 .slotNumber(request.slotNumber())
                 .isEmpty(request.isEmpty())
-             //   .parkingLot(request.parkingLot())
-             //   .carId(request.carId())
                 .build();
     }
 }

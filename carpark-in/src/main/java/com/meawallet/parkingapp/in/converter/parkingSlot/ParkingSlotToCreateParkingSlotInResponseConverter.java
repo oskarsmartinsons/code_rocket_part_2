@@ -11,8 +11,6 @@ public class ParkingSlotToCreateParkingSlotInResponseConverter {
                 parkingSlot.getId(),
                 parkingSlot.getSlotNumber(),
                 parkingSlot.isEmpty()
-             //   parkingSlot.getParkingLot(),
-             //   parkingSlot.getCarId()
         );
     }
 }
