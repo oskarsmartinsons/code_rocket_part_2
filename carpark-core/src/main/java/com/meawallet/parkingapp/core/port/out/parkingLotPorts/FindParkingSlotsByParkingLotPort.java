@@ -4,6 +4,6 @@ import com.meawallet.parkingapp.domain.ParkingSlot;
 
 import java.util.List;
 
-public interface GetParkingSlotsForParkingLotPort {
+public interface FindParkingSlotsByParkingLotPort {
     List<ParkingSlot> findParkingSlotsByParkingLotId(Integer parkingLotId);
 }

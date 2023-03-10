@@ -9,5 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ParkingSlotRepository extends JpaRepository<ParkingSlotEntity, Integer> {
+    List<ParkingSlot> findAllById(Integer parkingLotId);
     //List<ParkingSlot> findByParkingLotId(Integer parkingLotId);
 }

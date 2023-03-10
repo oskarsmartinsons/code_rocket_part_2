@@ -10,6 +10,5 @@ public class ParkingSlot {
     private Integer id;
     private Integer slotNumber;
     private boolean isEmpty;
-   // ParkingLot parkingLot;
-   // Integer carId;
+    private Car car;
 }

@@ -10,7 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +24,7 @@ public class ParkingLotController {
     private final DeleteParkingLotUseCase deleteParkingLotUseCase;
     private final UpdateParkingLotUseCase updateParkingLotUseCase;
     private final FindAllParkingLotsUseCase findAllParkingLotsUseCase;
-    private final GetParkingSlotsForParkingLotUseCase getParkingSlotsForParkingLotUseCase;
+    private final FindParkingSlotsByParkingLotUseCase findParkingSlotsByParkingLotUseCase;
     private final CreateParkingLotInRequestToDomainConverter createParkingLotInRequestToDomainConverter;
     private final UpdateParkingLotInRequestToDomainConverter updateParkingLotInRequestToDomainConverter;
     private final ParkingLotToGetParkingLotInResponseConverter parkingLotToGetParkingLotInResponseConverter;
@@ -79,7 +78,7 @@ public class ParkingLotController {
     @GetMapping(value = "/parking-lots/{parkingLotId}/parking-slots")
     public List<ParkingSlot> getParkingSlotsForParkingLot(@PathVariable Integer parkingLotId) {
         log.debug("Received find PARKING LOTS BY ID with related PARKING SLOTS request");
-        return getParkingSlotsForParkingLotUseCase.findParkingSlotsByParkingLotId(parkingLotId);
+        return findParkingSlotsByParkingLotUseCase.findParkingSlotsByParkingLotId(parkingLotId);
     }
 
     @GetMapping(value = "/test")
