@@ -9,8 +9,10 @@ import com.meawallet.parkingapp.in.dto.car.CreateCarInRequest;
 import com.meawallet.parkingapp.in.dto.car.CreateCarInResponse;
 import com.meawallet.parkingapp.in.dto.car.GetCarInResponse;
 import com.meawallet.parkingapp.in.dto.car.UpdateCarInRequest;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Value;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+@Slf4j
 @RestController
 @AllArgsConstructor
 public class CarController {
@@ -33,7 +35,8 @@ public class CarController {
     private final UpdateCarInRequestToDomainConverter updateCarInRequestToDomainConverter;
 
     @PostMapping(value = "/cars")
-    public ResponseEntity<CreateCarInResponse> createCar(@RequestBody CreateCarInRequest request) {
+    public ResponseEntity<CreateCarInResponse> createCar(@Valid @RequestBody CreateCarInRequest request) {
+        log.debug("Received create CAR request: {}", request);
         var car = createCarInRequestToDomainConverter.convert(request);
         var savedCar = saveCarUseCase.save(car);
 
@@ -44,6 +47,7 @@ public class CarController {
 
     @GetMapping(value = "cars/{id}")
     public GetCarInResponse findCarById(@PathVariable Integer id) {
+        log.debug("Received find CAR by id request: {}", id);
         var car = findCarUseCase.findCarById(id);
         return carToGetCarInResponseConverterConverter.convert(car);
     }
@@ -51,11 +55,13 @@ public class CarController {
     @DeleteMapping(value = "cars/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCarById(@PathVariable Integer id) {
+        log.debug("Received delete CAR by id request: {}", id);
         deleteCarUseCase.deleteCarById(id);
     }
 
     @PutMapping(value = "cars/{id}")
-    public void updateCar(@RequestBody UpdateCarInRequest request,@PathVariable Integer id) {
+    public void updateCar(@Valid @RequestBody UpdateCarInRequest request,@PathVariable Integer id) {
+        log.debug("Received update CAR request: {}, id: {}", request, id);
         var carForUpdate = updateCarInRequestToDomainConverter.convert(request, id);
 
         updateCarUseCase.updateCar(carForUpdate);
@@ -63,6 +69,7 @@ public class CarController {
 
     @GetMapping(value = "/cars")
     public List<GetCarInResponse> findAllCars() {
+        log.debug("Received find all CARS request");
         return findAllCarsUseCase.findAllCars().stream()
                 .map(carToGetCarInResponseConverterConverter::convert)
                 .collect(Collectors.toList());

@@ -9,7 +9,9 @@ import com.meawallet.parkingapp.in.dto.parkingSlot.CreateParkingSlotInRequest;
 import com.meawallet.parkingapp.in.dto.parkingSlot.CreateParkingSlotInResponse;
 import com.meawallet.parkingapp.in.dto.parkingSlot.GetParkingSlotInResponse;
 import com.meawallet.parkingapp.in.dto.parkingSlot.UpdateParkingSlotInRequest;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RestController
 @AllArgsConstructor
 public class ParkingSlotController {
@@ -31,7 +34,8 @@ public class ParkingSlotController {
     private final UpdateParkingSlotInRequestToDomainConverter updateParkingSlotInRequestToDomainConverter;
 
     @PostMapping(value = "/parking-slots")
-    public ResponseEntity<CreateParkingSlotInResponse> createParkingSlot (@RequestBody CreateParkingSlotInRequest request) {
+    public ResponseEntity<CreateParkingSlotInResponse> createParkingSlot (@Valid @RequestBody CreateParkingSlotInRequest request) {
+        log.debug("Received create PARKING SLOT request: {}", request);
         var parkingSlot = createParkingSlotInRequestToDomainConverter.convert(request);
         var savedParkingLot = saveParkingSlotUseCase.saveParkingSlot(parkingSlot);
 
@@ -42,6 +46,7 @@ public class ParkingSlotController {
 
     @GetMapping(value = "/parking-slots/{id}")
     public GetParkingSlotInResponse findParkingSlotById(@PathVariable Integer id) {
+        log.debug("Received find PARKING SLOT by id request: {}", id);
         var parkingSlot = findParkingSlotUseCase.findParkingSlotById(id);
         return parkingSlotToGetParkingSlotInResponseConverter.convert(parkingSlot);
     }
@@ -49,18 +54,20 @@ public class ParkingSlotController {
     @DeleteMapping(value = "/parking-slots/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteParkingSlotById(@PathVariable Integer id) {
+        log.debug("Received delete PARKING SLOT by id request: {}", id);
         deleteParkingSlotUseCase.deleteParkingSlotById(id);
     }
 
     @PutMapping(value = "/parking-slots/{id}")
-    public void updateParkingSlot (@RequestBody UpdateParkingSlotInRequest request, @PathVariable Integer id) {
-
+    public void updateParkingSlot (@Valid @RequestBody UpdateParkingSlotInRequest request, @PathVariable Integer id) {
+        log.debug("Received update PARKING SLOT request: {}, id: {}", request, id);
         var parkingSlotForUpdate = updateParkingSlotInRequestToDomainConverter.convert(request, id);
         updateParkingSlotUseCase.updateParkingSlot(parkingSlotForUpdate);
     }
 
     @GetMapping(value = "/parking-slots")
     public List<GetParkingSlotInResponse> findAllParkingSlots() {
+        log.debug("Received find all PARKING SLOTS request");
         return findAllParkingSlotsUseCase.findAllParkingSlots().stream()
                 .map(parkingSlotToGetParkingSlotInResponseConverter::convert)
                 .collect(Collectors.toList());

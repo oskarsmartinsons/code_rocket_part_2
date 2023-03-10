@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -28,8 +27,12 @@ public class ParkingLotEntity {
     @Column(name = "empty_slots")
     private Integer emptySlots;
 
+    @Lob
     @OneToMany (cascade = CascadeType.ALL)
-   // @Column(name = "related_parking_slots")
+    @Column(name = "parking_slot_entities")
+    @JoinTable(name = "parking_lot_with_slots",
+            joinColumns = @JoinColumn(name = "lot_id"),
+            inverseJoinColumns = @JoinColumn(name = "slot_id"))
     private List<ParkingSlotEntity> parkingSlotEntities;
 
 }

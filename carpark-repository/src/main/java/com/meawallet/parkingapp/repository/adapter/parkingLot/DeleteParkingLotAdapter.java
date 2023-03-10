@@ -4,8 +4,9 @@ import com.meawallet.parkingapp.core.port.out.parkingLotPorts.DeleteParkingLotPo
 import com.meawallet.parkingapp.repository.converter.ParkingLotDomainToParkingLotEntity;
 import com.meawallet.parkingapp.repository.repository.ParkingLotRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-
+@Slf4j
 @Component
 @AllArgsConstructor
 public class DeleteParkingLotAdapter implements DeleteParkingLotPort {
@@ -13,7 +14,7 @@ public class DeleteParkingLotAdapter implements DeleteParkingLotPort {
     private final ParkingLotDomainToParkingLotEntity parkingLotDomainToParkingLotEntity;
     @Override
     public void deleteById(Integer id) {
-      //  var entity = parkingLotDomainToParkingLotEntity.convert(parkingLot);
         parkingLotRepository.deleteById(id);
+        log.debug("PARKING LOT with id: {} deleted", id);
     }
 }

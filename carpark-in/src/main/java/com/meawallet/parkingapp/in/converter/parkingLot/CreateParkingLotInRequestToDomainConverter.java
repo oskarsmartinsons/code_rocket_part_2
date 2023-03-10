@@ -1,15 +1,10 @@
 package com.meawallet.parkingapp.in.converter.parkingLot;
 
-import com.fasterxml.jackson.databind.introspect.TypeResolutionContext;
 import com.meawallet.parkingapp.domain.ParkingLot;
-import com.meawallet.parkingapp.domain.ParkingSlot;
 import com.meawallet.parkingapp.in.converter.parkingSlot.CreateParkingSlotInRequestToDomainConverter;
 import com.meawallet.parkingapp.in.dto.parkingLot.CreateParkingLotInRequest;
 import com.meawallet.parkingapp.in.dto.parkingSlot.CreateParkingSlotInRequest;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.Value;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
@@ -23,7 +18,7 @@ public class CreateParkingLotInRequestToDomainConverter {
 
     public ParkingLot convert(CreateParkingLotInRequest request) {
 
-        List<CreateParkingSlotInRequest> createSlotsInRequests = request.createParkingSlotInRequests()
+        List<CreateParkingSlotInRequest> createSlotsInRequests = request.createParkingSlotsInRequests()
                 .orElse(Collections.emptyList());
 
         return ParkingLot.builder()

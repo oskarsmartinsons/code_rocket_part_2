@@ -2,6 +2,7 @@ package com.meawallet.parkingapp.in.converter.parkingSlot;
 
 import com.meawallet.parkingapp.domain.ParkingSlot;
 import com.meawallet.parkingapp.in.dto.parkingSlot.UpdateParkingSlotInRequest;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component

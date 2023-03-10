@@ -5,8 +5,9 @@ import com.meawallet.parkingapp.core.port.out.carPorts.FindCarByIdPort;
 import com.meawallet.parkingapp.core.port.out.carPorts.UpdateCarPort;
 import com.meawallet.parkingapp.domain.Car;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-
+@Slf4j
 @Component
 @AllArgsConstructor
 public class UpdateCarService implements UpdateCarUseCase {
@@ -16,6 +17,7 @@ public class UpdateCarService implements UpdateCarUseCase {
     public void updateCar(Car car) {
         findCarByIdPort.findCarById(car.getId())
                         .orElseThrow(()->new IllegalArgumentException("Car not found"));
+        log.debug("CAR found by id: {}", car.getId());
         updateCarPort.update(car);
     }
 }

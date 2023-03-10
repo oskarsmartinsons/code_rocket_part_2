@@ -7,10 +7,11 @@ import com.meawallet.parkingapp.repository.converter.ParkingLotEntityToParkingLo
 import com.meawallet.parkingapp.repository.repository.ParkingLotRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-
+@Slf4j
 @Component
-//@Transactional
+@Transactional
 @AllArgsConstructor
 public class SaveParkingLotAdapter implements SaveParkingLotPort {
     private final ParkingLotRepository parkingLotRepository;
@@ -20,6 +21,7 @@ public class SaveParkingLotAdapter implements SaveParkingLotPort {
     public ParkingLot save(ParkingLot parkingLot) {
         var entity = parkingLotDomainToParkingLotEntity.convert(parkingLot);
         parkingLotRepository.save(entity);
+        log.debug("PARKING LOT: {} saved successfully", entity);
         return parkingLotEntityToParkingLotDomain.convert(entity);
     }
 }

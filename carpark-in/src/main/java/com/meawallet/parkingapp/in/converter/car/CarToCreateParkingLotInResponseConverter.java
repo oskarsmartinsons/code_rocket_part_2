@@ -10,7 +10,7 @@ public class CarToCreateParkingLotInResponseConverter {
         return new CreateCarInResponse(
                 car.getId(),
                 car.getRegistrationNumber(),
-                car.getRegistrationNumber()
+                car.getCarMake()
         );
     }
 }

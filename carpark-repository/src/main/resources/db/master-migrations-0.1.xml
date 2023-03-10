@@ -6,28 +6,34 @@
 
     <changeSet id="create.parking_lot.table" author="oskars.martinsons">
         <createTable tableName="parking_lots">
-            <column name="id" type="INTEGER" autoIncrement="true">
+            <column name="lot_id" type="INTEGER" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="VARCHAR(20)">
+               <constraints nullable="false"/>
+            </column>
+            <column name="slot_count" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
-            <column name="slot_count" type="INTEGER"/>
-            <column name="empty_slots" type="INTEGER"/>
-            <column name="related_parking_slots" type="ARRAY"/>
+            <column name="empty_slots" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parking_slot_entities" type="BLOB">
+            </column>
         </createTable>
     </changeSet>
 
     <changeSet id="create.parking_slot.table" author="oskars.martinsons">
         <createTable tableName="parking_slots">
-            <column name="id" type="INTEGER" autoIncrement="true">
+            <column name="slot_id" type="INTEGER" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="slot_number" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
-            <column name="slot_count" type="INTEGER"/>
-            <column name="is_empty" type="INTEGER"/>
+            <column name="is_empty" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 
@@ -36,10 +42,23 @@
             <column name="id" type="INTEGER" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="registration_number" type="VARCHAR(20)">
+            <column name="registration_number" type="VARCHAR(8)">
                 <constraints nullable="false"/>
             </column>
-            <column name="car_make" type="VARCHAR(20)"/>
+            <column name="car_make" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create.join.table.parking_lot_with_slots" author="oskars.martinsons">
+        <createTable tableName="parking_lot_with_slots">
+            <column name="lot_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="slot_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 

@@ -1,4 +1,4 @@
-/*
+
 package com.meawallet.parkingapp.in.converter.parkingSlot;
 
 import com.meawallet.parkingapp.domain.ParkingSlot;
@@ -11,10 +11,8 @@ public class ParkingSlotToUpdateParkingSlotInResponseConverter {
         return new UpdateParkingSlotInResponse(
                 parkingSlot.getId(),
                 parkingSlot.getSlotNumber(),
-                parkingSlot.isEmpty(),
-                parkingSlot.getParkingLotId(),
-                parkingSlot.getCarId()
+                parkingSlot.isEmpty()
         );
     }
 }
-*/
+

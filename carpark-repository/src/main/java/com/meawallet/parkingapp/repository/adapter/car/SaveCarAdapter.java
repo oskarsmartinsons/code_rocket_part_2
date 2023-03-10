@@ -8,11 +8,12 @@ import com.meawallet.parkingapp.repository.entity.CarEntity;
 import com.meawallet.parkingapp.repository.repository.CarRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Component;
-
+@Slf4j
 @Component
-//@Transactional
+@Transactional
 @AllArgsConstructor
 public class SaveCarAdapter implements SaveCarPort {
     private final CarRepository carRepository;
@@ -25,6 +26,8 @@ public class SaveCarAdapter implements SaveCarPort {
     public Car save(Car car) {
         var entity = conversionService.convert(car, CarEntity.class);
         carRepository.save(entity);
+        log.debug("CAR: {} saved successfully", entity);
+
         return carEntityToCarDomainConverter.convert(entity);
     }
 }

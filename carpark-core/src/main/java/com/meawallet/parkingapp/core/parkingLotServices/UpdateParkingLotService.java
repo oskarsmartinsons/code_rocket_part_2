@@ -5,8 +5,9 @@ import com.meawallet.parkingapp.core.port.out.parkingLotPorts.FindParkingLotById
 import com.meawallet.parkingapp.core.port.out.parkingLotPorts.UpdateParkingLotPort;
 import com.meawallet.parkingapp.domain.ParkingLot;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-
+@Slf4j
 @Component
 @AllArgsConstructor
 public class UpdateParkingLotService implements UpdateParkingLotUseCase {
@@ -14,10 +15,11 @@ public class UpdateParkingLotService implements UpdateParkingLotUseCase {
     private final UpdateParkingLotPort updateParkingLotPort;
 
     @Override
-    public void updateParkingLot(ParkingLot parkingLot) {
+    public ParkingLot updateParkingLot(ParkingLot parkingLot) {
         findParkingLotByIdPort.findById(parkingLot.getId())
                 .orElseThrow(()->new IllegalArgumentException("Parking Lot not found"));
+        log.debug("PARKING LOT found by id: {}", parkingLot.getId());
+        return updateParkingLotPort.update(parkingLot);
 
-        updateParkingLotPort.update(parkingLot);
     }
 }
