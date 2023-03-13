@@ -5,7 +5,7 @@ import com.meawallet.parkingapp.in.dto.car.CreateCarInResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CarToCreateParkingLotInResponseConverter {
+public class CarToCreateCarInResponseConverter {
     public CreateCarInResponse convert(Car car) {
         return new CreateCarInResponse(
                 car.getId(),

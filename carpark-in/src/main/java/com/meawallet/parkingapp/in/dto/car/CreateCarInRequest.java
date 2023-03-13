@@ -14,5 +14,4 @@ public record CreateCarInRequest (
         @Length(min = 1, max = 20)
         String carMake
 ){
-
 }

@@ -1,5 +1,6 @@
 package com.meawallet.parkingapp.repository.converter;
 
+import com.meawallet.parkingapp.repository.entity.CarEntity;
 import com.meawallet.parkingapp.repository.entity.ParkingSlotEntity;
 import com.meawallet.parkingapp.domain.ParkingSlot;
 import lombok.AllArgsConstructor;
@@ -8,14 +9,13 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 public class ParkingSlotEntityToParkingSlotDomain {
-   // private final ParkingLotEntityToParkingLotDomain parkingLotEntityToParkingLotDomain;
+    private final CarEntityToCarDomainConverter carEntityToCarDomainConverter;
     public ParkingSlot convert(ParkingSlotEntity entity) {
         return ParkingSlot.builder()
                 .id(entity.getId())
                 .slotNumber(entity.getSlotNumber())
                 .isEmpty(entity.isEmpty())
-            //    .parkingLot(parkingLotEntityToParkingLotDomain.convert(entity.getParkingLotEntity()))
-            //    .carId(entity.getCarId())
+                .car(entity.getCarEntity() != null ? carEntityToCarDomainConverter.convert(entity.getCarEntity()):null)
                 .build();
     }
 }

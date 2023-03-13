@@ -1,5 +1,6 @@
 package com.meawallet.parkingapp.repository.entity;
 
+import com.meawallet.parkingapp.domain.Car;
 import com.meawallet.parkingapp.domain.ParkingLot;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,5 +23,9 @@ public class ParkingSlotEntity {
     private Integer slotNumber;
     @Column (name = "is_empty")
     private boolean isEmpty;
+
+    @OneToOne(optional = true, cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_id")
+    private CarEntity carEntity;
 
 }

@@ -10,7 +10,8 @@ public class ParkingSlotToGetParkingSlotInResponseConverter {
         return new GetParkingSlotInResponse(
                 parkingSlot.getId(),
                 parkingSlot.getSlotNumber(),
-                parkingSlot.isEmpty()
+                parkingSlot.isEmpty(),
+                parkingSlot.getCar()
         );
     }
 }

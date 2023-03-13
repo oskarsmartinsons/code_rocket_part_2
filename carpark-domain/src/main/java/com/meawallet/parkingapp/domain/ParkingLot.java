@@ -1,12 +1,13 @@
 package com.meawallet.parkingapp.domain;
 
-import lombok.Builder;
-import lombok.Value;
+import lombok.*;
 
 import java.util.List;
 
-@Value
+@Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ParkingLot {
     Integer id;
     String name;

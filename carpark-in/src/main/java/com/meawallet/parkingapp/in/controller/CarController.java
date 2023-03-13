@@ -1,7 +1,7 @@
 package com.meawallet.parkingapp.in.controller;
 
 import com.meawallet.parkingapp.core.port.in.carUseCases.*;
-import com.meawallet.parkingapp.in.converter.car.CarToCreateParkingLotInResponseConverter;
+import com.meawallet.parkingapp.in.converter.car.CarToCreateCarInResponseConverter;
 import com.meawallet.parkingapp.in.converter.car.CarToGetCarInResponseConverterConverter;
 import com.meawallet.parkingapp.in.converter.car.CreateCarInRequestToDomainConverter;
 import com.meawallet.parkingapp.in.converter.car.UpdateCarInRequestToDomainConverter;
@@ -11,14 +11,12 @@ import com.meawallet.parkingapp.in.dto.car.GetCarInResponse;
 import com.meawallet.parkingapp.in.dto.car.UpdateCarInRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 @Slf4j
 @RestController
@@ -29,8 +27,9 @@ public class CarController {
     private final DeleteCarUseCase deleteCarUseCase;
     private final UpdateCarUseCase updateCarUseCase;
     private final FindAllCarsUseCase findAllCarsUseCase;
+    private final AddCarToParkingSlotUseCase addCarToParkingSlotUseCase;
     private final CreateCarInRequestToDomainConverter createCarInRequestToDomainConverter;
-    private final CarToCreateParkingLotInResponseConverter carToCreateParkingLotInResponseConverter;
+    private final CarToCreateCarInResponseConverter carToCreateCarInResponseConverter;
     private final CarToGetCarInResponseConverterConverter carToGetCarInResponseConverterConverter;
     private final UpdateCarInRequestToDomainConverter updateCarInRequestToDomainConverter;
 
@@ -40,7 +39,7 @@ public class CarController {
         var car = createCarInRequestToDomainConverter.convert(request);
         var savedCar = saveCarUseCase.save(car);
 
-        var responseBody = carToCreateParkingLotInResponseConverter.convert(savedCar);
+        var responseBody = carToCreateCarInResponseConverter.convert(savedCar);
 
         return ResponseEntity.ok(responseBody);
     }
@@ -74,4 +73,13 @@ public class CarController {
                 .map(carToGetCarInResponseConverterConverter::convert)
                 .collect(Collectors.toList());
     }
+
+    @PutMapping (value = "/{slotId}/add-car")
+    public void addCarToParkingSlot(@RequestBody CreateCarInRequest request, @PathVariable ("slotId") Integer slotId) {
+        log.debug("Received add CAR request");
+        var car = createCarInRequestToDomainConverter.convert(request);
+       // addCarToParkingSlotUseCase.addCarToParkingSlotById(car, slotId);
+        addCarToParkingSlotUseCase.addCar(car,slotId);
+    }
+
 }

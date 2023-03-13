@@ -10,14 +10,13 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 public class ParkingSlotDomainToParkingSlotEntity {
-   // private final ParkingLotDomainToParkingLotEntity parkingLotDomainToParkingLotEntity;
+    private final CarDomainToCarEntityConverter carDomainToCarEntityConverter;
     public ParkingSlotEntity convert(ParkingSlot slot) {
         return ParkingSlotEntity.builder()
                 .id(slot.getId())
                 .slotNumber(slot.getSlotNumber())
                 .isEmpty(slot.isEmpty())
-             //   .parkingLotEntity(parkingLotDomainToParkingLotEntity.convert(slot.getParkingLot()))
-             //   .carId(slot.getCarId())
+                .carEntity((slot.getCar() != null ? carDomainToCarEntityConverter.convert(slot.getCar()) : null))
                 .build();
     }
 }

@@ -1,5 +1,6 @@
 package com.meawallet.parkingapp.repository.entity;
 
+import com.meawallet.parkingapp.domain.ParkingSlot;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,4 +21,8 @@ public class CarEntity {
     private String registrationNumber;
     @Column(name = "car_make")
     private String carMake;
+
+/*    @OneToOne(mappedBy = "carEntity")
+    @JoinColumn(name = "slot_id")
+    private ParkingSlotEntity parkingSlotEntity;*/
 }

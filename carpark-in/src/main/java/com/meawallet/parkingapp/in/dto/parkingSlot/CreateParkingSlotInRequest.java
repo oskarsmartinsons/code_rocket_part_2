@@ -1,13 +1,13 @@
 package com.meawallet.parkingapp.in.dto.parkingSlot;
 
-import com.meawallet.parkingapp.domain.ParkingLot;
-import jakarta.validation.constraints.NotBlank;
+import com.meawallet.parkingapp.in.dto.car.CreateCarInRequest;
 import jakarta.validation.constraints.Positive;
-import jdk.jfr.BooleanFlag;
+import java.util.Optional;
 
 public record CreateParkingSlotInRequest(
         @Positive
         Integer slotNumber,
-        boolean isEmpty
+        boolean isEmpty,
+        Optional<CreateCarInRequest> createCarInRequest
 ) {
 }

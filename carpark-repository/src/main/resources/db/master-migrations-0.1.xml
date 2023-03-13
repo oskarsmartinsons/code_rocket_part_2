@@ -34,6 +34,7 @@
             <column name="is_empty" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
+            <column name="car_id" type="Integer"/>
         </createTable>
     </changeSet>
 
