@@ -7,8 +7,10 @@ import com.meawallet.parkingapp.repository.repository.CarRepository;
 import com.meawallet.parkingapp.repository.repository.ParkingLotRepository;
 import com.meawallet.parkingapp.repository.repository.ParkingSlotRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 @AllArgsConstructor
 public class AddCarAdapter implements AddCarPort {
@@ -24,5 +26,6 @@ public class AddCarAdapter implements AddCarPort {
         carRepository.save(entity);
         parkingSlotRepository.addCarToParkingSlot(entity,slotId);
         parkingLotRepository.subtractEmptySlot(slotId);
+
     }
 }

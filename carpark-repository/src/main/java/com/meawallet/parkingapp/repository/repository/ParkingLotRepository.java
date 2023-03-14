@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public interface ParkingLotRepository extends JpaRepository<ParkingLotEntity, Integer> {
   @Transactional
   @Modifying
-  @Query("UPDATE ParkingLotEntity p SET p.emptySlots = p.emptySlots - 1 WHERE :slotId MEMBER OF p.parkingSlotEntities")
+  @Query("UPDATE ParkingLotEntity p SET p.emptySlots = p.emptySlots - 1 WHERE EXISTS (SELECT s FROM p.parkingSlotEntities s WHERE s.id = :slotId)")
   void subtractEmptySlot(@Param("slotId") Integer slotId);
 
 }
