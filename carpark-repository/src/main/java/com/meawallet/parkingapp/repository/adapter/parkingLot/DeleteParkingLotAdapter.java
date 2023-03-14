@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class DeleteParkingLotAdapter implements DeleteParkingLotPort {
     private final ParkingLotRepository parkingLotRepository;
-    private final ParkingLotDomainToParkingLotEntity parkingLotDomainToParkingLotEntity;
     @Override
     public void deleteById(Integer id) {
         parkingLotRepository.deleteById(id);

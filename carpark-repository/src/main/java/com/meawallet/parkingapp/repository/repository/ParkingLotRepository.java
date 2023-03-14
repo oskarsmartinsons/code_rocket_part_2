@@ -15,4 +15,9 @@ public interface ParkingLotRepository extends JpaRepository<ParkingLotEntity, In
   @Query("UPDATE ParkingLotEntity p SET p.emptySlots = p.emptySlots - 1 WHERE EXISTS (SELECT s FROM p.parkingSlotEntities s WHERE s.id = :slotId)")
   void subtractEmptySlot(@Param("slotId") Integer slotId);
 
+  @Transactional
+  @Modifying
+  @Query("UPDATE ParkingLotEntity p SET p.emptySlots = p.emptySlots + 1 WHERE EXISTS (SELECT s FROM p.parkingSlotEntities s WHERE s.id = :slotId)")
+  void addEmptySlot(@Param("slotId") Integer slotId);
+
 }

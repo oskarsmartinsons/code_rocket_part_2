@@ -13,7 +13,7 @@ public class SaveParkingSlotService implements SaveParkingSlotUseCase {
 
     @Override
     public ParkingSlot saveParkingSlot(ParkingSlot parkingSlot) {
-        //  if(parkingSlot==null) {throw new IllegalArgumentException("ParkingSlot arg is invalid");}
+        if(parkingSlot==null) {throw new IllegalArgumentException("ParkingSlot arg is invalid");}
         return saveParkingSlotPort.save(parkingSlot);
     }
 }

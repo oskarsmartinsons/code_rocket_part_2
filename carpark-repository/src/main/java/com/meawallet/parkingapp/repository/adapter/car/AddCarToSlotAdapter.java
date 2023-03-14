@@ -1,6 +1,6 @@
 package com.meawallet.parkingapp.repository.adapter.car;
 
-import com.meawallet.parkingapp.core.port.out.carPorts.AddCarPort;
+import com.meawallet.parkingapp.core.port.out.carPorts.AddCarToSlotPort;
 import com.meawallet.parkingapp.domain.Car;
 import com.meawallet.parkingapp.repository.converter.CarDomainToCarEntityConverter;
 import com.meawallet.parkingapp.repository.repository.CarRepository;
@@ -12,20 +12,18 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
+//@Transactional
 @AllArgsConstructor
-public class AddCarAdapter implements AddCarPort {
-    private final ParkingSlotRepository parkingSlotRepository;
+public class AddCarToSlotAdapter implements AddCarToSlotPort {
     private final CarRepository carRepository;
     private final CarDomainToCarEntityConverter carDomainToCarEntityConverter;
 
-    private final ParkingLotRepository parkingLotRepository;
-
     @Override
-    public void addCarToParkingLot(Car car, Integer slotId) {
+    public void addCarToParkingSlot(Car car, Integer slotId) {
         var entity = carDomainToCarEntityConverter.convert(car);
         carRepository.save(entity);
-        parkingSlotRepository.addCarToParkingSlot(entity,slotId);
-        parkingLotRepository.subtractEmptySlot(slotId);
+        carRepository.addCarToParkingSlot(entity,slotId);
+        log.debug("CAR added to PARKING SLOT with id: {}", slotId);
 
     }
 }

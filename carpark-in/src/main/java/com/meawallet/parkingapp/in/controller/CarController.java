@@ -28,6 +28,7 @@ public class CarController {
     private final UpdateCarUseCase updateCarUseCase;
     private final FindAllCarsUseCase findAllCarsUseCase;
     private final AddCarToParkingSlotUseCase addCarToParkingSlotUseCase;
+    private final RemoveCarFromParkingSlotUseCase removeCarFromParkingSlotUseCase;
     private final CreateCarInRequestToDomainConverter createCarInRequestToDomainConverter;
     private final CarToCreateCarInResponseConverter carToCreateCarInResponseConverter;
     private final CarToGetCarInResponseConverterConverter carToGetCarInResponseConverterConverter;
@@ -74,12 +75,16 @@ public class CarController {
                 .collect(Collectors.toList());
     }
 
-    @PutMapping (value = "/{slotId}/add-car")
+    @PutMapping (value = "/parking-slot/{slotId}/add-car")
     public void addCarToParkingSlot(@RequestBody CreateCarInRequest request, @PathVariable ("slotId") Integer slotId) {
         log.debug("Received add CAR request");
         var car = createCarInRequestToDomainConverter.convert(request);
-       // addCarToParkingSlotUseCase.addCarToParkingSlotById(car, slotId);
-        addCarToParkingSlotUseCase.addCar(car,slotId);
+        addCarToParkingSlotUseCase.addCarInParkingSlot(car,slotId);
     }
 
+    @PutMapping (value = "/parking-slot/{slotId}/remove-car")
+    public void removeCarFromParkingSlot(@PathVariable ("slotId") Integer slotId) {
+        log.debug("Received remove CAR request");
+        removeCarFromParkingSlotUseCase.removeCarFromParkingSlot(slotId);
+    }
 }

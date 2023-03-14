@@ -1,8 +1,6 @@
 package com.meawallet.parkingapp.in.controller;
 
 import com.meawallet.parkingapp.core.port.in.parkingLotUseCases.*;
-
-import com.meawallet.parkingapp.domain.ParkingSlot;
 import com.meawallet.parkingapp.in.converter.parkingLot.*;
 import com.meawallet.parkingapp.in.dto.parkingLot.*;
 import jakarta.validation.Valid;
@@ -11,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +21,6 @@ public class ParkingLotController {
     private final DeleteParkingLotUseCase deleteParkingLotUseCase;
     private final UpdateParkingLotUseCase updateParkingLotUseCase;
     private final FindAllParkingLotsUseCase findAllParkingLotsUseCase;
-    private final FindParkingSlotsByParkingLotUseCase findParkingSlotsByParkingLotUseCase;
     private final CreateParkingLotInRequestToDomainConverter createParkingLotInRequestToDomainConverter;
     private final UpdateParkingLotInRequestToDomainConverter updateParkingLotInRequestToDomainConverter;
     private final ParkingLotToGetParkingLotInResponseConverter parkingLotToGetParkingLotInResponseConverter;
@@ -73,12 +69,6 @@ public class ParkingLotController {
         return findAllParkingLotsUseCase.findAllParkingLots().stream()
                 .map(parkingLotToGetParkingLotInResponseConverter::convert)
                 .collect(Collectors.toList());
-    }
-
-    @GetMapping(value = "/parking-lots/{parkingLotId}/parking-slots")
-    public List<ParkingSlot> getParkingSlotsForParkingLot(@PathVariable Integer parkingLotId) {
-        log.debug("Received find PARKING LOTS BY ID with related PARKING SLOTS request");
-        return findParkingSlotsByParkingLotUseCase.findParkingSlotsByParkingLotId(parkingLotId);
     }
 
     @GetMapping(value = "/test")

@@ -9,13 +9,13 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 public class DeleteParkingSlotService implements DeleteParkingSlotUseCase {
-   // private final FindParkingSlotByIdPort findParkingSlotByIdPort;
+    private final FindParkingSlotByIdPort findParkingSlotByIdPort;
     private final DeleteParkingSlotPort deleteParkingSlotPort;
 
     @Override
     public void deleteParkingSlotById(Integer id) {
-//        var parkingSlotToDelete = findParkingSlotByIdPort.findById(id)
-//                .orElseThrow(()-> new IllegalArgumentException("Parking Slot not found"));
+        findParkingSlotByIdPort.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("Parking Slot not found"));
         deleteParkingSlotPort.deleteById(id);
     }
 }

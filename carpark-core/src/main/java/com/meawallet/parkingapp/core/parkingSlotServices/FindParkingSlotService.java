@@ -12,7 +12,7 @@ public class FindParkingSlotService implements FindParkingSlotUseCase {
     private final FindParkingSlotByIdPort findParkingSlotByIdPort;
     @Override
     public ParkingSlot findParkingSlotById(Integer id) {
-      //  if(id==null) {throw new IllegalArgumentException("Id arg is invalid");}
+        if(id==null) {throw new IllegalArgumentException("Id arg is invalid");}
         return findParkingSlotByIdPort.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("Parking Slot not found"));
     }

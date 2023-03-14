@@ -19,7 +19,6 @@ public class SaveCarAdapter implements SaveCarPort {
     private final CarRepository carRepository;
 
     private final ConversionService conversionService;
-    private final CarDomainToCarEntityConverter carDomainToCarEntityConverter;
     private final CarEntityToCarDomainConverter carEntityToCarDomainConverter;
 
     @Override
