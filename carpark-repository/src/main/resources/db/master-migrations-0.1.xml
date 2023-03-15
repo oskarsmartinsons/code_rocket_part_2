@@ -23,21 +23,6 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="create.parking_slot.table" author="oskars.martinsons">
-        <createTable tableName="parking_slots">
-            <column name="slot_id" type="INTEGER" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="slot_number" type="INTEGER">
-                <constraints nullable="false"/>
-            </column>
-            <column name="is_empty" type="BOOLEAN">
-                <constraints nullable="false"/>
-            </column>
-            <column name="car_id" type="Integer"/>
-        </createTable>
-    </changeSet>
-
     <changeSet id="create.car.table" author="oskars.martinsons">
         <createTable tableName="cars">
             <column name="id" type="INTEGER" autoIncrement="true">
@@ -51,6 +36,24 @@
             </column>
         </createTable>
     </changeSet>
+
+    <changeSet id="create.parking_slot.table" author="oskars.martinsons">
+        <createTable tableName="parking_slots">
+            <column name="slot_id" type="INTEGER" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="slot_number" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_empty" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="car_id" type="Integer">
+                <constraints nullable="true" foreignKeyName="fk_slot_car_id" references="cars(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
 
     <changeSet id="create.join.table.parking_lot_with_slots" author="oskars.martinsons">
         <createTable tableName="parking_lot_with_slots">
