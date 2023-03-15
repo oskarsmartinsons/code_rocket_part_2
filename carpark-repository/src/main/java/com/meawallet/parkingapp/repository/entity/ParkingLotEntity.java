@@ -35,4 +35,7 @@ public class ParkingLotEntity {
             inverseJoinColumns = @JoinColumn(name = "slot_id"))
     private List<ParkingSlotEntity> parkingSlotEntities;
 
+    @OneToOne
+    @JoinColumn(name = "guard_id", referencedColumnName = "id")
+    private GuardEntity guardEntity;
 }

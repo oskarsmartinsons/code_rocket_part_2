@@ -10,8 +10,11 @@ import java.util.stream.Collectors;
 @Component
 @AllArgsConstructor
 public class ParkingLotDomainToParkingLotEntity {
+    private final GuardToGuardEntityConverter guardToGuardEntityConverter;
     private final ParkingSlotDomainToParkingSlotEntity parkingSlotDomainToParkingSlotEntity;
     public ParkingLotEntity convert(ParkingLot parkingLot) {
+
+        var guardEntity = guardToGuardEntityConverter.convert(parkingLot.getGuard());
             return ParkingLotEntity.builder()
                     .id(parkingLot.getId())
                     .name(parkingLot.getName())
@@ -21,6 +24,7 @@ public class ParkingLotDomainToParkingLotEntity {
                             .stream()
                             .map(parkingSlotDomainToParkingSlotEntity::convert)
                             .collect(Collectors.toList()))
+                    .guardEntity(guardEntity)
                     .build();
     }
 }

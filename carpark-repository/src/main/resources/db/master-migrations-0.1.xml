@@ -66,4 +66,30 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="create.guards.table" author="oskars.martinsons">
+        <createTable tableName="guards">
+            <column name="id" type="INTEGER" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add.relations.to.guards.and.parking_lots" author="oskars.martinsons">
+        <addColumn tableName="parking_lots">
+            <column name="guard_id" type="INTEGER"/>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="parking_lots" baseColumnNames="guard_id"
+                                 constraintName="fk_lot_guard_id"
+                                 referencedTableName="guards"  referencedColumnNames="id"/>
+    </changeSet>
+
 </databaseChangeLog>

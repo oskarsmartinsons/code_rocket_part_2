@@ -1,5 +1,6 @@
 package com.meawallet.parkingapp.repository.converter;
 
+import com.meawallet.parkingapp.repository.entity.GuardEntity;
 import com.meawallet.parkingapp.repository.entity.ParkingLotEntity;
 import com.meawallet.parkingapp.domain.ParkingLot;
 import lombok.AllArgsConstructor;
@@ -10,8 +11,12 @@ import java.util.stream.Collectors;
 @Component
 @AllArgsConstructor
 public class ParkingLotEntityToParkingLotDomain {
+    private final GuardEntityToGuardConverter guardEntityToGuardConverter;
     private final ParkingSlotEntityToParkingSlotDomain parkingSlotEntityToParkingSlotDomain;
     public ParkingLot convert (ParkingLotEntity entity) {
+
+        var guard = guardEntityToGuardConverter.convert(entity.getGuardEntity());
+
         return ParkingLot.builder()
                 .id(entity.getId())
                 .name(entity.getName())
@@ -22,6 +27,7 @@ public class ParkingLotEntityToParkingLotDomain {
                                 .map(parkingSlotEntityToParkingSlotDomain::convert)
                                 .collect(Collectors.toList())
                 )
+                .guard(guard)
                 .build();
     }
 }

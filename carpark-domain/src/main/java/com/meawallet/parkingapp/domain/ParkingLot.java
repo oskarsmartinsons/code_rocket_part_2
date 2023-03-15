@@ -5,7 +5,7 @@ import lombok.*;
 import java.util.List;
 
 @Data
-@Builder
+@Builder (toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class ParkingLot {
@@ -14,4 +14,5 @@ public class ParkingLot {
     Integer slotCount;
     Integer emptySlots;
     List<ParkingSlot> parkingSlots;
+    Guard guard;
 }
