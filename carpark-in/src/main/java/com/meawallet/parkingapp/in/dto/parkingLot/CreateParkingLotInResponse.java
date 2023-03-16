@@ -1,5 +1,6 @@
 package com.meawallet.parkingapp.in.dto.parkingLot;
 
+import com.meawallet.parkingapp.in.dto.guard.CreateGuardInResponse;
 import com.meawallet.parkingapp.in.dto.parkingSlot.CreateParkingSlotInResponse;
 import java.util.List;
 
@@ -8,6 +9,7 @@ public record CreateParkingLotInResponse(
         String name,
         Integer slotCount,
         Integer emptySlots,
-        List<CreateParkingSlotInResponse> createParkingSlotsInResponse
+        List<CreateParkingSlotInResponse> createParkingSlotsInResponse,
+        CreateGuardInResponse createGuardInResponse
 ) {
 }
