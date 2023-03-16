@@ -18,8 +18,8 @@
             <column name="empty_slots" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
-            <column name="parking_slot_entities" type="BLOB">
-            </column>
+<!--            <column name="parking_slot_entities" type="BLOB">
+            </column>-->
         </createTable>
     </changeSet>
 

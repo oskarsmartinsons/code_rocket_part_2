@@ -1,5 +1,6 @@
 package com.meawallet.parkingapp.in.controller;
 
+import com.meawallet.parkingapp.core.exception.EntityNotFoundException;
 import com.meawallet.parkingapp.core.port.in.parkingLotUseCases.*;
 import com.meawallet.parkingapp.in.converter.parkingLot.*;
 import com.meawallet.parkingapp.in.dto.parkingLot.*;
@@ -28,7 +29,7 @@ public class ParkingLotController {
     private final ParkingLotToUpdateParkingLotInResponseConverter parkingLotToUpdateParkingLotInResponseConverter;
 
     @PostMapping(value = "/parking-lots")
-    public ResponseEntity<CreateParkingLotInResponse> createParkingLot (@Valid @RequestBody CreateParkingLotInRequest request) {
+    public ResponseEntity<CreateParkingLotInResponse> createParkingLot (@Valid @RequestBody CreateParkingLotInRequest request){
         log.debug("Received create PARKING LOT WITH SLOTS request: {}", request);
         var parkingLot = createParkingLotInRequestToDomainConverter.convert(request);
         var savedParkingLot = saveParkingLotUseCase.saveParkingLot(parkingLot);
@@ -39,9 +40,10 @@ public class ParkingLotController {
     }
 
     @GetMapping(value = "/parking-lots/{id}")
-    public GetParkingLotInResponse findParkingLotById(@PathVariable Integer id) {
+    public GetParkingLotInResponse findParkingLotById(@PathVariable Integer id) throws EntityNotFoundException {
         log.debug("Received find PARKING LOT by id request: {}", id);
         var parkingLot = findParkingLotUseCase.findParkingLotById(id);
+
         return parkingLotToGetParkingLotInResponseConverter.convert(parkingLot);
     }
 

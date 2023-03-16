@@ -21,7 +21,7 @@ public class SaveParkingSlotAdapter implements SaveParkingSlotPort {
     @Override
     public ParkingSlot save(ParkingSlot parkingSlot) {
         var entity = parkingSlotDomainToParkingSlotEntity.convert(parkingSlot);
-        parkingSlotRepository.save(entity);
+        parkingSlotRepository.saveAndFlush(entity);
         log.debug("PARKING SLOT: {} saved successfully", entity);
         return parkingSlotEntityToParkingSlotDomain.convert(entity);
     }

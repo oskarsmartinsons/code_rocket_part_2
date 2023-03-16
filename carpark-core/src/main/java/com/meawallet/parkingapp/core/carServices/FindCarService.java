@@ -1,5 +1,6 @@
 package com.meawallet.parkingapp.core.carServices;
 
+import com.meawallet.parkingapp.core.exception.EntityNotFoundException;
 import com.meawallet.parkingapp.core.port.in.carUseCases.FindCarUseCase;
 import com.meawallet.parkingapp.core.port.out.carPorts.FindCarByIdPort;
 import com.meawallet.parkingapp.domain.Car;
@@ -13,6 +14,6 @@ public class FindCarService implements FindCarUseCase {
     @Override
     public Car findCarById(Integer id) {
         return findCarByIdPort.findCarById(id)
-                .orElseThrow(()->new IllegalArgumentException("Car not found"));
+                .orElseThrow(()->new EntityNotFoundException("Car not found with id: " + id));
     }
 }

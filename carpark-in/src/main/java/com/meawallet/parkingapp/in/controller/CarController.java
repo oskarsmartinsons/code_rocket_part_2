@@ -1,5 +1,6 @@
 package com.meawallet.parkingapp.in.controller;
 
+import com.meawallet.parkingapp.core.exception.EntityNotFoundException;
 import com.meawallet.parkingapp.core.port.in.carUseCases.*;
 import com.meawallet.parkingapp.in.converter.car.CarToCreateCarInResponseConverter;
 import com.meawallet.parkingapp.in.converter.car.CarToGetCarInResponseConverterConverter;
@@ -46,7 +47,7 @@ public class CarController {
     }
 
     @GetMapping(value = "cars/{id}")
-    public GetCarInResponse findCarById(@PathVariable Integer id) {
+    public GetCarInResponse findCarById(@PathVariable Integer id) throws EntityNotFoundException {
         log.debug("Received find CAR by id request: {}", id);
         var car = findCarUseCase.findCarById(id);
         return carToGetCarInResponseConverterConverter.convert(car);

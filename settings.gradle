@@ -4,6 +4,6 @@ include 'carpark-domain'
 include 'carpark-repository'
 include 'carpark-core'
 include 'carpark-in'
-include 'carpark-out:untitled'
-findProject(':carpark-out:untitled')?.name = 'untitled'
+include 'carpark-out'
+//findProject(':carpark-out:untitled')?.name = 'untitled'
 

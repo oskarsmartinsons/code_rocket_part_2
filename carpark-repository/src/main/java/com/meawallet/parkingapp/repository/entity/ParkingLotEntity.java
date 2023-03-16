@@ -27,13 +27,16 @@ public class ParkingLotEntity {
     @Column(name = "empty_slots")
     private Integer emptySlots;
 
-    @Lob
     @OneToMany (cascade = CascadeType.ALL)
     @Column(name = "parking_slot_entities")
     @JoinTable(name = "parking_lot_with_slots",
             joinColumns = @JoinColumn(name = "lot_id"),
             inverseJoinColumns = @JoinColumn(name = "slot_id"))
     private List<ParkingSlotEntity> parkingSlotEntities;
+
+/*    @OneToMany(orphanRemoval = true)
+    @JoinColumn(name = "slot_id")
+    private List<ParkingSlotEntity> parkingSlotEntities;*/
 
     @OneToOne
     @JoinColumn(name = "guard_id", referencedColumnName = "id")

@@ -1,5 +1,6 @@
 package com.meawallet.parkingapp.core.parkingLotServices;
 
+import com.meawallet.parkingapp.core.exception.EntityNotFoundException;
 import com.meawallet.parkingapp.core.port.in.parkingLotUseCases.UpdateParkingLotUseCase;
 import com.meawallet.parkingapp.core.port.out.parkingLotPorts.FindParkingLotByIdPort;
 import com.meawallet.parkingapp.core.port.out.parkingLotPorts.UpdateParkingLotPort;
@@ -17,7 +18,8 @@ public class UpdateParkingLotService implements UpdateParkingLotUseCase {
     @Override
     public ParkingLot updateParkingLot(ParkingLot parkingLot) {
         findParkingLotByIdPort.findById(parkingLot.getId())
-                .orElseThrow(()->new IllegalArgumentException("Parking Lot not found"));
+                .orElseThrow(()->new EntityNotFoundException("Parking Lot with id " + parkingLot.getId() + " not found for update"));
+
         log.debug("PARKING LOT found by id: {}", parkingLot.getId());
         return updateParkingLotPort.update(parkingLot);
 
