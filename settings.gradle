@@ -6,4 +6,5 @@ include 'carpark-core'
 include 'carpark-in'
 include 'carpark-out'
 //findProject(':carpark-out:untitled')?.name = 'untitled'
+include 'carpark-itest'
 
