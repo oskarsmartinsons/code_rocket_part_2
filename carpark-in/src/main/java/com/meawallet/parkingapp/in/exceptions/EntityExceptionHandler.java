@@ -17,6 +17,4 @@ public class EntityExceptionHandler {
         );
         return new ResponseEntity<>(entityException, HttpStatus.NOT_FOUND);
     }
-
-
 }

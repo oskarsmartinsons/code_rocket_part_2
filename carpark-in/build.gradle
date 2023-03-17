@@ -13,8 +13,11 @@ dependencies {
     implementation project(":carpark-core")
     implementation project(":carpark-domain")
 
+
     implementation 'org.springframework.boot:spring-boot-starter-web:3.0.3'
     implementation 'org.springframework.boot:spring-boot-starter-validation:3.0.3'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.0.4'
 
     compileOnly 'org.projectlombok:lombok:1.18.26'
     annotationProcessor 'org.projectlombok:lombok:1.18.26'
@@ -25,5 +28,5 @@ dependencies {
 }
 
 test {
-    useJUnitPlatform()
+useJUnitPlatform()
 }
