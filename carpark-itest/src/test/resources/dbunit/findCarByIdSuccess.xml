@@ -1,7 +1,7 @@
 <dataset>
     <PUBLIC.cars
             id="1"
-            registrationNumber="111"
-            carMake="TestCar"
+            registration_number="111"
+            car_make="TestCar"
     />
 </dataset>

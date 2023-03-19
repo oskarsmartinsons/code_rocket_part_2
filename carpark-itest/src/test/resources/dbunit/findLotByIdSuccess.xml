@@ -1,0 +1,8 @@
+<dataset>
+    <PUBLIC.parking_lots
+            lot_id="1"
+            name="MyLot"
+            slot_count="20"
+            empty_slots="20"
+    />
+</dataset>

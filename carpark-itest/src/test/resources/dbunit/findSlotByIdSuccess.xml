@@ -1,0 +1,7 @@
+<dataset>
+    <PUBLIC.parking_slots
+            slot_id="1"
+            slot_number="999"
+            is_empty = "true"
+    />
+</dataset>
