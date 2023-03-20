@@ -1,6 +1,6 @@
 package com.meawallet.parkingapp.in.controller;
 
-import com.meawallet.parkingapp.core.exception.EntityNotFoundException;
+import com.meawallet.parkingapp.exception.EntityNotFoundException;
 import com.meawallet.parkingapp.core.port.in.parkingSlotUseCases.*;
 import com.meawallet.parkingapp.in.converter.parkingSlot.CreateParkingSlotInRequestToDomainConverter;
 import com.meawallet.parkingapp.in.converter.parkingSlot.ParkingSlotToCreateParkingSlotInResponseConverter;

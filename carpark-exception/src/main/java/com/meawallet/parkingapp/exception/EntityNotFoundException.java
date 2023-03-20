@@ -1,4 +1,4 @@
-package com.meawallet.parkingapp.core.exception;
+package com.meawallet.parkingapp.exception;
 
 public class EntityNotFoundException extends RuntimeException{
     public EntityNotFoundException(String message) {

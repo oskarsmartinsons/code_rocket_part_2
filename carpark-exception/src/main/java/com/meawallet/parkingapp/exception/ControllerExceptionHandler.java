@@ -1,4 +1,4 @@
-package com.meawallet.parkingapp.in.exceptions;
+package com.meawallet.parkingapp.exception;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -27,5 +27,15 @@ public class ControllerExceptionHandler {
         }
         errorMessage = errorMessage.substring(0, errorMessage.length() - 2);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+    }
+
+    @ExceptionHandler(value = {EntityNotFoundException.class})
+    public ResponseEntity<Object> handleEntityNotFoundException(EntityNotFoundException entityNotFoundException) {
+        EntityException entityException = new EntityException(
+                entityNotFoundException.getMessage(),
+                entityNotFoundException.getCause(),
+                HttpStatus.NOT_FOUND
+        );
+        return new ResponseEntity<>(entityException, HttpStatus.NOT_FOUND);
     }
 }

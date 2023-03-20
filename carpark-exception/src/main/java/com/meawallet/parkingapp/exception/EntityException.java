@@ -1,4 +1,4 @@
-package com.meawallet.parkingapp.in.exceptions;
+package com.meawallet.parkingapp.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

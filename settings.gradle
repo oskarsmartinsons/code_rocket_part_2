@@ -7,4 +7,5 @@ include 'carpark-in'
 include 'carpark-out'
 //findProject(':carpark-out:untitled')?.name = 'untitled'
 include 'carpark-itest'
+include 'carpark-exception'
 

@@ -15,6 +15,7 @@ dependencies {
     implementation project(":carpark-repository")
     implementation project(":carpark-domain")
     implementation project(":carpark-out")
+    implementation project(":carpark-exception")
 
 
     implementation 'org.springframework.boot:spring-boot-starter-web:3.0.3'

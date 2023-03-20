@@ -1,6 +1,6 @@
 package com.meawallet.parkingapp.core.carServices;
 
-import com.meawallet.parkingapp.core.exception.EntityNotFoundException;
+import com.meawallet.parkingapp.exception.EntityNotFoundException;
 import com.meawallet.parkingapp.core.port.in.carUseCases.UpdateCarUseCase;
 import com.meawallet.parkingapp.core.port.out.carPorts.FindCarByIdPort;
 import com.meawallet.parkingapp.core.port.out.carPorts.UpdateCarPort;

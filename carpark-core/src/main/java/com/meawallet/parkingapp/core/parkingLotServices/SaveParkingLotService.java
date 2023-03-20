@@ -1,6 +1,5 @@
 package com.meawallet.parkingapp.core.parkingLotServices;
 
-import com.meawallet.parkingapp.core.exception.ParkingLotCreateRequestException;
 import com.meawallet.parkingapp.core.port.in.parkingLotUseCases.SaveParkingLotUseCase;
 import com.meawallet.parkingapp.core.port.out.guardPorts.GetRandomGuardPort;
 import com.meawallet.parkingapp.core.port.out.guardPorts.SaveGuardPort;

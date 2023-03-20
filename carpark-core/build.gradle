@@ -11,6 +11,7 @@ repositories {
 
 dependencies {
     implementation project(":carpark-domain")
+    implementation project(":carpark-exception")
 
     /*   implementation 'org.springframework:spring-context:6.0.5'
        implementation 'org.springframework:spring-core:6.0.5'*/
