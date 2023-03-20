@@ -26,3 +26,6 @@ logging:
   level:
     com.meawallet.parkingapp: DEBUG
 #    root: TRACE
+
+guard-api:
+  guard-url: https://random-data-api.com/api/v2/users

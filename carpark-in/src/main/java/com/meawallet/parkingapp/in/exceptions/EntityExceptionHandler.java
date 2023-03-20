@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class EntityExceptionHandler {
     @ExceptionHandler(value = {EntityNotFoundException.class})
-    public ResponseEntity<Object> handleParkingLotNotFoundException (EntityNotFoundException entityNotFoundException) {
+    public ResponseEntity<Object> handleEntityNotFoundException(EntityNotFoundException entityNotFoundException) {
         EntityException entityException = new EntityException(
                 entityNotFoundException.getMessage(),
                 entityNotFoundException.getCause(),

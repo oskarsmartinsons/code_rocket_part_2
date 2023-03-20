@@ -29,3 +29,6 @@ logging:
   level:
     com.meawallet.parkingapp: DEBUG
 #    root: TRACE
+
+guard-api:
+  guard-url: http://localhost:20000/random

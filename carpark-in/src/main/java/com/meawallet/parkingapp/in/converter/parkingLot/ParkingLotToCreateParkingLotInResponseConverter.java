@@ -7,6 +7,7 @@ import com.meawallet.parkingapp.in.dto.parkingLot.CreateParkingLotInResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -15,7 +16,10 @@ public class ParkingLotToCreateParkingLotInResponseConverter {
     private final ParkingSlotToCreateParkingSlotInResponseConverter parkingSlotToCreateParkingSlotInResponseConverter;
     private final GuardToCreateGuardInResponseConverter guardToCreateGuardInResponseConverter;
     public CreateParkingLotInResponse convert(ParkingLot parkingLot) {
-        var guardInResponse = guardToCreateGuardInResponseConverter.convert(parkingLot.getGuard());
+
+/*        var guardInResponse = Optional.ofNullable(parkingLot.getGuard())
+                .map(guardToCreateGuardInResponseConverter::convert)
+                .orElse(null);*/
 
         return new CreateParkingLotInResponse(
                 parkingLot.getId(),
@@ -25,7 +29,8 @@ public class ParkingLotToCreateParkingLotInResponseConverter {
                 parkingLot.getParkingSlots().stream()
                         .map(parkingSlotToCreateParkingSlotInResponseConverter::convert)
                         .collect(Collectors.toList()),
-                guardInResponse
+            //    guardInResponse
+                parkingLot.getGuard()
         );
     }
 }
